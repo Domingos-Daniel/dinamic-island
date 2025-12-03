@@ -1,0 +1,58 @@
+{
+  "apps": [
+    {
+      "name": "WhatsApp",
+      "type": "local",
+      "enabled": true,
+      "icon_name": "ICON_WHATSAPP",
+      "color": "#25D366"
+    },
+    {
+      "name": "Facebook",
+      "type": "url",
+      "enabled": true,
+      "url": "https://facebook.com",
+      "icon_name": "ICON_FACEBOOK",
+      "color": "#1877F2"
+    },
+    {
+      "name": "LinkedIn",
+      "type": "local",
+      "enabled": true,
+      "icon_name": "ICON_LINKEDIN",
+      "color": "#0A66C2"
+    },
+    {
+      "name": "VS Code",
+      "type": "local",
+      "enabled": true,
+      "icon_name": "ICON_VSCODE",
+      "color": "#007ACC"
+    },
+    {
+      "name": "Brave",
+      "type": "local",
+      "enabled": true,
+      "icon_name": "ICON_BRAVE",
+      "color": "#FB542B"
+    },
+    {
+      "name": "Sticky Notes",
+      "type": "local",
+      "enabled": true,
+      "icon_name": "ICON_NOTES",
+      "color": "#FFE066"
+    },
+    {
+      "name": "Music Player",
+      "type": "special",
+      "enabled": true,
+      "icon_name": "ICON_MUSIC",
+      "color": "#FF6B9D"
+    }
+  ],
+  "music_controls_enabled": true,
+  "auto_collapse_delay": 3000,
+  "expanded_width": 650,
+  "collapsed_width": 220
+}
