@@ -229,14 +229,20 @@ class GlowButton(QWidget):
         self.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.setToolTip(tooltip)
 
-        # Animations
+        # Animations with smoother curves
         self._scale_anim = QPropertyAnimation(self, b"scale")
-        self._scale_anim.setDuration(150)
-        self._scale_anim.setEasingCurve(QEasingCurve.Type.OutBack)
+        self._scale_anim.setDuration(200)
+        self._scale_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
 
         self._glow_anim = QPropertyAnimation(self, b"glow")
-        self._glow_anim.setDuration(200)
-        self._glow_anim.setEasingCurve(QEasingCurve.Type.InOutQuad)
+        self._glow_anim.setDuration(300)
+        self._glow_anim.setEasingCurve(QEasingCurve.Type.InOutSine)
+        
+        # Rotation animation for extra flair
+        self._rotation = 0.0
+        self._rotation_anim = QPropertyAnimation(self, b"rotation")
+        self._rotation_anim.setDuration(150)
+        self._rotation_anim.setEasingCurve(QEasingCurve.Type.OutBack)
 
         self.renderer = QSvgRenderer(self.svg_data.encode())
 
@@ -265,6 +271,15 @@ class GlowButton(QWidget):
         self._glow = value
         self.update()
 
+    @pyqtProperty(float)
+    def rotation(self) -> float:
+        return self._rotation
+
+    @rotation.setter
+    def rotation(self, value: float) -> None:
+        self._rotation = value
+        self.update()
+
     # ─── Events ───────────────────────────────────────────────────────────────
     def enterEvent(self, _event) -> None:
         self._animate_scale(1.15)
@@ -277,12 +292,16 @@ class GlowButton(QWidget):
     def mousePressEvent(self, event: QMouseEvent) -> None:
         if event.button() == Qt.MouseButton.LeftButton:
             self._pressed = True
-            self._animate_scale(0.92)
+            self._animate_scale(0.85)  # More dramatic press
+            self._animate_rotation(-5.0)  # Tilt on press
 
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         if self._pressed and event.button() == Qt.MouseButton.LeftButton:
             self._pressed = False
-            self._animate_scale(1.15 if self.underMouse() else 1.0)
+            # Bounce effect on release
+            self._animate_scale(1.25)  # Overshoot
+            QTimer.singleShot(100, lambda: self._animate_scale(1.18 if self.underMouse() else 1.0))
+            self._animate_rotation(3.0 if self.underMouse() else 0.0)
             if self.rect().contains(event.pos()):
                 self.callback()
 
@@ -297,30 +316,60 @@ class GlowButton(QWidget):
         self._glow_anim.setStartValue(self._glow)
         self._glow_anim.setEndValue(target)
         self._glow_anim.start()
+    
+    def _animate_rotation(self, target: float) -> None:
+        self._rotation_anim.stop()
+        self._rotation_anim.setStartValue(self._rotation)
+        self._rotation_anim.setEndValue(target)
+        self._rotation_anim.start()
 
     def paintEvent(self, _event) -> None:
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
 
         center = QPointF(self.width() / 2, self.height() / 2)
         radius = (self.SIZE / 2 - 4) * self._scale
+        
+        # Apply rotation transform
+        painter.translate(center)
+        painter.rotate(self._rotation)
+        painter.translate(-center)
 
-        # Glow
+        # Outer glow (larger, more diffuse)
         if self._glow > 0.01:
-            glow_color = QColor(self.accent)
-            glow_color.setAlphaF(0.35 * self._glow)
-            gradient = QRadialGradient(center, radius * 1.6)
-            gradient.setColorAt(0, glow_color)
-            gradient.setColorAt(1, QColor(0, 0, 0, 0))
-            painter.setBrush(gradient)
-            painter.setPen(Qt.PenStyle.NoPen)
-            painter.drawEllipse(center, radius * 1.6, radius * 1.6)
+            for i in range(3):
+                glow_color = QColor(self.accent)
+                glow_color.setAlphaF(0.15 * self._glow * (1 - i * 0.3))
+                glow_radius = radius * (1.8 + i * 0.3)
+                gradient = QRadialGradient(center, glow_radius)
+                gradient.setColorAt(0, glow_color)
+                gradient.setColorAt(0.5, QColor(self.accent.red(), self.accent.green(), self.accent.blue(), int(30 * self._glow)))
+                gradient.setColorAt(1, QColor(0, 0, 0, 0))
+                painter.setBrush(gradient)
+                painter.setPen(Qt.PenStyle.NoPen)
+                painter.drawEllipse(center, glow_radius, glow_radius)
 
-        # Background circle
-        bg = QColor(40, 40, 42) if self._glow < 0.5 else QColor(55, 55, 58)
-        painter.setBrush(bg)
-        painter.setPen(QPen(QColor(80, 80, 85), 1.2))
+        # Background circle with gradient
+        bg_gradient = QRadialGradient(center.x(), center.y() - radius * 0.3, radius * 1.5)
+        if self._glow < 0.5:
+            bg_gradient.setColorAt(0, QColor(55, 55, 58))
+            bg_gradient.setColorAt(1, QColor(35, 35, 38))
+        else:
+            bg_gradient.setColorAt(0, QColor(70, 70, 75))
+            bg_gradient.setColorAt(1, QColor(45, 45, 48))
+        
+        painter.setBrush(bg_gradient)
+        painter.setPen(QPen(QColor(90, 90, 95, int(150 + 105 * self._glow)), 1.5))
         painter.drawEllipse(center, radius, radius)
+        
+        # Inner highlight (top)
+        highlight = QLinearGradient(center.x(), center.y() - radius, center.x(), center.y())
+        highlight.setColorAt(0, QColor(255, 255, 255, int(25 + 20 * self._glow)))
+        highlight.setColorAt(1, QColor(255, 255, 255, 0))
+        painter.setBrush(highlight)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.drawEllipse(center, radius * 0.9, radius * 0.9)
 
         # Icon
         icon_size = self.ICON_SIZE * self._scale
@@ -973,25 +1022,39 @@ class DynamicIslandWindow(QWidget):
         self._is_hidden = False
         self._pulse_phase = 0.0  # For pulse animation in collapsed state
         self._is_playing = False  # Track music playing state
+        self._shadow_intensity = 0.0  # For shadow animation
+        self._border_glow = 0.0  # For border glow effect
         
         # Pulse animation timer for collapsed indicator
         self._pulse_timer = QTimer(self)
-        self._pulse_timer.setInterval(50)  # 20 FPS
+        self._pulse_timer.setInterval(40)  # 25 FPS for smoother animation
         self._pulse_timer.timeout.connect(self._update_pulse)
         self._pulse_timer.start()
 
-        # Geometry animation (spring-like)
+        # Geometry animation (smoother spring-like)
         self._geom_anim = QPropertyAnimation(self, b"geometry")
-        self._geom_anim.setDuration(420)
-        self._geom_anim.setEasingCurve(QEasingCurve.Type.OutBack)
+        self._geom_anim.setDuration(500)
+        self._geom_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
 
-        # Content fade animation
+        # Content fade animation (smoother)
         self._opacity_anim = QPropertyAnimation(self, b"contentOpacity")
-        self._opacity_anim.setDuration(250)
+        self._opacity_anim.setDuration(350)
+        self._opacity_anim.setEasingCurve(QEasingCurve.Type.InOutSine)
 
-        # Background lightness animation
+        # Background lightness animation (smoother)
         self._bg_anim = QPropertyAnimation(self, b"bgLightness")
-        self._bg_anim.setDuration(300)
+        self._bg_anim.setDuration(400)
+        self._bg_anim.setEasingCurve(QEasingCurve.Type.OutQuad)
+        
+        # Shadow intensity animation
+        self._shadow_anim = QPropertyAnimation(self, b"shadowIntensity")
+        self._shadow_anim.setDuration(450)
+        self._shadow_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+        
+        # Border glow animation  
+        self._border_glow_anim = QPropertyAnimation(self, b"borderGlow")
+        self._border_glow_anim.setDuration(500)
+        self._border_glow_anim.setEasingCurve(QEasingCurve.Type.InOutSine)
 
         # Collapse timer
         self._collapse_timer = QTimer(self)
@@ -1057,6 +1120,24 @@ class DynamicIslandWindow(QWidget):
     @bgLightness.setter
     def bgLightness(self, value: float) -> None:
         self._bg_lightness = value
+        self.update()
+
+    @pyqtProperty(float)
+    def shadowIntensity(self) -> float:
+        return self._shadow_intensity
+
+    @shadowIntensity.setter
+    def shadowIntensity(self, value: float) -> None:
+        self._shadow_intensity = value
+        self.update()
+
+    @pyqtProperty(float)
+    def borderGlow(self) -> float:
+        return self._border_glow
+
+    @borderGlow.setter
+    def borderGlow(self, value: float) -> None:
+        self._border_glow = value
         self.update()
 
     # ─── UI Setup ─────────────────────────────────────────────────────────────
@@ -1293,23 +1374,55 @@ class DynamicIslandWindow(QWidget):
         music_extra = 150 if self._music_player_visible else 0
         expand_width = self._calculate_expanded_width() + music_extra
         
+        # Smooth expand with staggered animations
         self._animate_geometry(expand_width, self.EXPANDED_HEIGHT)
-        self._animate_opacity(1.0)
-        self._animate_bg(0.12)
+        self._animate_shadow(1.0)  # Increase shadow
+        self._animate_border_glow(0.6)  # Add subtle border glow
+        
+        # Delay opacity slightly for smoother feel
+        QTimer.singleShot(80, lambda: self._animate_opacity(1.0))
+        QTimer.singleShot(50, lambda: self._animate_bg(0.15))
+        
         self._collapse_timer.stop()
 
     def collapse(self) -> None:
         if not self.expanded:
             return
         self.expanded = False
+        
+        # Fade out content first, then shrink
+        self._animate_opacity(0.0)
+        self._animate_shadow(0.0)
+        self._animate_border_glow(0.0)
+        self._animate_bg(0.0)
+        
+        # Delay geometry change for smoother transition
+        QTimer.singleShot(150, self._do_collapse_geometry)
+    
+    def _do_collapse_geometry(self) -> None:
+        """Execute the geometry collapse after content fades."""
+        if self.expanded:
+            return  # User expanded again, abort
         # Hide container BEFORE animation to allow small size
         if hasattr(self, '_button_container'):
             self._button_container.setVisible(False)
         if hasattr(self, '_notification_label'):
             self._notification_label.setVisible(False)
         self._animate_geometry(self.COLLAPSED_WIDTH, self.COLLAPSED_HEIGHT)
-        self._animate_opacity(0.0)
-        self._animate_bg(0.0)
+    
+    def _animate_shadow(self, target: float) -> None:
+        if hasattr(self, '_shadow_anim'):
+            self._shadow_anim.stop()
+            self._shadow_anim.setStartValue(self._shadow_intensity)
+            self._shadow_anim.setEndValue(target)
+            self._shadow_anim.start()
+    
+    def _animate_border_glow(self, target: float) -> None:
+        if hasattr(self, '_border_glow_anim'):
+            self._border_glow_anim.stop()
+            self._border_glow_anim.setStartValue(self._border_glow)
+            self._border_glow_anim.setEndValue(target)
+            self._border_glow_anim.start()
     
     def _hide_container_if_collapsed(self) -> None:
         """Hide button container when collapsed to allow small size."""
@@ -1358,45 +1471,74 @@ class DynamicIslandWindow(QWidget):
     # ─── Painting ─────────────────────────────────────────────────────────────
     def _update_pulse(self) -> None:
         """Update pulse animation phase."""
-        self._pulse_phase = (self._pulse_phase + 0.08) % (2 * math.pi)
+        self._pulse_phase = (self._pulse_phase + 0.06) % (2 * math.pi)
         if not self.expanded:
             self.update()  # Only repaint when collapsed
     
     def paintEvent(self, _event) -> None:
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
 
         rect = self.rect()
         radius = self._corner_radius
 
         # Background color with subtle lightness shift
-        base = int(6 + 18 * self._bg_lightness)
-        bg_color = QColor(base, base, base, 245)
+        base = int(8 + 22 * self._bg_lightness)
+        bg_color = QColor(base, base, base + 2, 250)
 
-        # Subtle inner highlight (glassmorphism vibe)
-        path = QPainterPath()
-        path.addRoundedRect(QRectF(rect), radius, radius)
-
-        # Drop shadow simulation (soft outer glow)
-        shadow_color = QColor(0, 0, 0, 90)
-        for i in range(4, 0, -1):
-            shadow_color.setAlpha(20 + 15 * (4 - i))
+        # Enhanced drop shadow (more layers, smoother)
+        shadow_layers = int(5 + 3 * self._shadow_intensity)
+        for i in range(shadow_layers, 0, -1):
+            shadow_alpha = int((15 + 25 * self._shadow_intensity) * (shadow_layers - i + 1) / shadow_layers)
+            shadow_color = QColor(0, 0, 0, shadow_alpha)
             painter.setPen(Qt.PenStyle.NoPen)
             painter.setBrush(shadow_color)
-            inflate = int(i * 1.5)
-            painter.drawRoundedRect(rect.adjusted(-inflate, -inflate, inflate, inflate), radius + inflate, radius + inflate)
+            inflate = int(i * (1.5 + self._shadow_intensity))
+            painter.drawRoundedRect(
+                rect.adjusted(-inflate, -inflate, inflate, inflate), 
+                radius + inflate, 
+                radius + inflate
+            )
 
-        # Main pill
-        painter.setBrush(bg_color)
-        painter.setPen(QPen(QColor(60, 60, 65), 0.8))
+        # Outer glow when expanded (subtle blue tint)
+        if self._border_glow > 0.01:
+            glow_color = QColor(80, 160, 255, int(30 * self._border_glow))
+            for i in range(3):
+                glow_color.setAlpha(int((20 - i * 6) * self._border_glow))
+                inflate = int((3 + i * 2) * self._border_glow)
+                painter.setBrush(glow_color)
+                painter.drawRoundedRect(
+                    rect.adjusted(-inflate, -inflate, inflate, inflate),
+                    radius + inflate,
+                    radius + inflate
+                )
+
+        # Main pill with gradient
+        bg_gradient = QLinearGradient(rect.left(), rect.top(), rect.left(), rect.bottom())
+        bg_gradient.setColorAt(0, QColor(base + 8, base + 8, base + 10, 252))
+        bg_gradient.setColorAt(0.5, bg_color)
+        bg_gradient.setColorAt(1, QColor(base - 2, base - 2, base, 248))
+        
+        painter.setBrush(bg_gradient)
+        border_color = QColor(
+            int(60 + 30 * self._border_glow), 
+            int(60 + 40 * self._border_glow), 
+            int(65 + 50 * self._border_glow),
+            int(180 + 75 * self._bg_lightness)
+        )
+        painter.setPen(QPen(border_color, 1.0 + 0.5 * self._border_glow))
         painter.drawRoundedRect(QRectF(rect), radius, radius)
 
-        # Top highlight line (simulates light reflection)
+        # Top highlight line (simulates light reflection) - enhanced
         highlight = QLinearGradient(rect.left(), rect.top(), rect.right(), rect.top())
+        highlight_intensity = int(22 + 18 * self._bg_lightness)
         highlight.setColorAt(0, QColor(255, 255, 255, 0))
-        highlight.setColorAt(0.5, QColor(255, 255, 255, int(18 + 12 * self._bg_lightness)))
+        highlight.setColorAt(0.3, QColor(255, 255, 255, highlight_intensity // 2))
+        highlight.setColorAt(0.5, QColor(255, 255, 255, highlight_intensity))
+        highlight.setColorAt(0.7, QColor(255, 255, 255, highlight_intensity // 2))
         highlight.setColorAt(1, QColor(255, 255, 255, 0))
-        painter.setPen(QPen(QBrush(highlight), 1))
+        painter.setPen(QPen(QBrush(highlight), 1.2))
         painter.drawLine(
             int(rect.left() + radius),
             rect.top() + 1,
@@ -1404,34 +1546,73 @@ class DynamicIslandWindow(QWidget):
             rect.top() + 1,
         )
         
-        # Draw animated indicator when collapsed (like iPhone's camera/mic indicator)
+        # Inner edge highlight (bottom)
+        if self._bg_lightness > 0.05:
+            bottom_highlight = QLinearGradient(rect.left(), rect.bottom(), rect.right(), rect.bottom())
+            bottom_highlight.setColorAt(0, QColor(255, 255, 255, 0))
+            bottom_highlight.setColorAt(0.5, QColor(255, 255, 255, int(8 * self._bg_lightness)))
+            bottom_highlight.setColorAt(1, QColor(255, 255, 255, 0))
+            painter.setPen(QPen(QBrush(bottom_highlight), 0.8))
+            painter.drawLine(
+                int(rect.left() + radius),
+                rect.bottom() - 1,
+                int(rect.right() - radius),
+                rect.bottom() - 1,
+            )
+        
+        # Draw animated indicator when collapsed (enhanced)
         if not self.expanded and rect.width() <= 100:
-            # Pulsing glow effect
-            pulse = (math.sin(self._pulse_phase) + 1) / 2  # 0 to 1
-            
-            # Center dot with glow
-            center_x = rect.center().x()
-            center_y = rect.center().y()
-            
-            # Outer glow
-            glow_radius = 4 + pulse * 2
-            glow_color = QColor(100, 200, 255, int(40 + 30 * pulse))
-            glow_gradient = QRadialGradient(center_x, center_y, glow_radius * 2)
+            self._draw_collapsed_indicator(painter, rect)
+    
+    def _draw_collapsed_indicator(self, painter: QPainter, rect: QRect) -> None:
+        """Draw the animated pulsing indicator when collapsed."""
+        # Multi-phase pulse for more organic feel
+        pulse1 = (math.sin(self._pulse_phase) + 1) / 2  # 0 to 1
+        pulse2 = (math.sin(self._pulse_phase * 1.5 + 0.5) + 1) / 2
+        pulse3 = (math.sin(self._pulse_phase * 0.7 - 0.3) + 1) / 2
+        
+        center_x = rect.center().x()
+        center_y = rect.center().y()
+        
+        # Outer atmospheric glow (very soft)
+        for i in range(3):
+            glow_radius = 8 + i * 4 + pulse1 * 3
+            glow_alpha = int((25 - i * 8) * (0.5 + pulse2 * 0.5))
+            glow_color = QColor(100, 180, 255, glow_alpha)
+            glow_gradient = QRadialGradient(center_x, center_y, glow_radius)
             glow_gradient.setColorAt(0, glow_color)
-            glow_gradient.setColorAt(1, QColor(100, 200, 255, 0))
+            glow_gradient.setColorAt(0.6, QColor(80, 150, 255, glow_alpha // 2))
+            glow_gradient.setColorAt(1, QColor(60, 120, 255, 0))
             painter.setBrush(glow_gradient)
             painter.setPen(Qt.PenStyle.NoPen)
-            painter.drawEllipse(QPointF(center_x, center_y), glow_radius * 2, glow_radius * 2)
-            
-            # Inner bright dot
-            dot_radius = 3 + pulse * 0.5
-            dot_color = QColor(150, 220, 255, int(180 + 75 * pulse))
-            painter.setBrush(dot_color)
-            painter.drawEllipse(QPointF(center_x, center_y), dot_radius, dot_radius)
-            
-            # Tiny white center
-            painter.setBrush(QColor(255, 255, 255, int(200 + 55 * pulse)))
-            painter.drawEllipse(QPointF(center_x, center_y), 1.5, 1.5)
+            painter.drawEllipse(QPointF(center_x, center_y), glow_radius, glow_radius)
+        
+        # Middle ring (subtle)
+        ring_radius = 5 + pulse3 * 1.5
+        ring_color = QColor(120, 200, 255, int(60 + 40 * pulse1))
+        painter.setPen(QPen(ring_color, 1.0 + pulse2 * 0.5))
+        painter.setBrush(Qt.BrushStyle.NoBrush)
+        painter.drawEllipse(QPointF(center_x, center_y), ring_radius, ring_radius)
+        
+        # Inner bright dot
+        dot_radius = 3.5 + pulse1 * 0.8
+        dot_gradient = QRadialGradient(center_x - 0.5, center_y - 0.5, dot_radius)
+        dot_gradient.setColorAt(0, QColor(255, 255, 255, int(250 + 5 * pulse2)))
+        dot_gradient.setColorAt(0.3, QColor(180, 230, 255, int(220 + 35 * pulse1)))
+        dot_gradient.setColorAt(0.7, QColor(120, 200, 255, int(180 + 50 * pulse3)))
+        dot_gradient.setColorAt(1, QColor(80, 160, 255, int(100 + 50 * pulse1)))
+        painter.setBrush(dot_gradient)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.drawEllipse(QPointF(center_x, center_y), dot_radius, dot_radius)
+        
+        # Tiny white highlight (top-left of dot)
+        highlight_offset = dot_radius * 0.3
+        painter.setBrush(QColor(255, 255, 255, int(180 + 75 * pulse2)))
+        painter.drawEllipse(
+            QPointF(center_x - highlight_offset, center_y - highlight_offset), 
+            1.2 + pulse1 * 0.3, 
+            1.2 + pulse1 * 0.3
+        )
 
     # ─── Music Player ─────────────────────────────────────────────────────────
     def _toggle_music_player(self) -> None:
