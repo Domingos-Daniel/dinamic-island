@@ -197,6 +197,18 @@ ICON_BELL = """
 </svg>
 """
 
+ICON_PIN = """
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="#888888"/>
+</svg>
+"""
+
+ICON_PIN_ACTIVE = """
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="#4CAF50"/>
+</svg>
+"""
+
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Custom Animated Button
@@ -888,6 +900,32 @@ class AppEditorDialog(QDialog):
         ]
         apps.extend(common_apps)
         
+        # Add popular apps with known paths
+        popular_apps = [
+            ("WhatsApp", os.path.join(os.environ.get("LOCALAPPDATA", ""), "WhatsApp", "WhatsApp.exe")),
+            ("WhatsApp", os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "whatsapp-desktop", "WhatsApp.exe")),
+            ("Spotify", os.path.join(os.environ.get("APPDATA", ""), "Spotify", "Spotify.exe")),
+            ("Discord", os.path.join(os.environ.get("LOCALAPPDATA", ""), "Discord", "Update.exe --processStart Discord.exe")),
+            ("Telegram", os.path.join(os.environ.get("APPDATA", ""), "Telegram Desktop", "Telegram.exe")),
+            ("VS Code", os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "Microsoft VS Code", "Code.exe")),
+            ("Brave", os.path.join(os.environ.get("LOCALAPPDATA", ""), "BraveSoftware", "Brave-Browser", "Application", "brave.exe")),
+            ("Chrome", os.path.join(os.environ.get("PROGRAMFILES", ""), "Google", "Chrome", "Application", "chrome.exe")),
+            ("Chrome", os.path.join(os.environ.get("PROGRAMFILES(X86)", ""), "Google", "Chrome", "Application", "chrome.exe")),
+            ("Firefox", os.path.join(os.environ.get("PROGRAMFILES", ""), "Mozilla Firefox", "firefox.exe")),
+            ("Edge", os.path.join(os.environ.get("PROGRAMFILES(X86)", ""), "Microsoft", "Edge", "Application", "msedge.exe")),
+            ("Slack", os.path.join(os.environ.get("LOCALAPPDATA", ""), "slack", "slack.exe")),
+            ("Zoom", os.path.join(os.environ.get("APPDATA", ""), "Zoom", "bin", "Zoom.exe")),
+            ("Teams", os.path.join(os.environ.get("LOCALAPPDATA", ""), "Microsoft", "Teams", "Update.exe --processStart ms-teams.exe")),
+            ("Notion", os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "Notion", "Notion.exe")),
+            ("Obsidian", os.path.join(os.environ.get("LOCALAPPDATA", ""), "Obsidian", "Obsidian.exe")),
+        ]
+        
+        # Add popular apps that exist
+        for name, path in popular_apps:
+            if os.path.exists(path) or (" --processStart" in path and os.path.exists(path.split(" --processStart")[0])):
+                if not any(name == n for n, _ in apps):
+                    apps.append((name, path))
+        
         # Quick scan of common app locations
         quick_paths = [
             (os.environ.get("LOCALAPPDATA", ""), "Programs"),
@@ -993,8 +1031,15 @@ class DynamicIslandWindow(QWidget):
     def __init__(self) -> None:
         super().__init__()
         
-        # Load configuration
-        self.config_path = Path(__file__).parent / "config.json"
+        # Load configuration - handle both script and PyInstaller exe
+        if getattr(sys, 'frozen', False):
+            # Running as compiled exe
+            app_dir = Path(sys.executable).parent
+        else:
+            # Running as script
+            app_dir = Path(__file__).parent
+        
+        self.config_path = app_dir / "config.json"
         self.config = self._load_config()
         
         # Apply config values
@@ -1024,6 +1069,7 @@ class DynamicIslandWindow(QWidget):
         self._is_playing = False  # Track music playing state
         self._shadow_intensity = 0.0  # For shadow animation
         self._border_glow = 0.0  # For border glow effect
+        self._is_pinned = False  # Pin state - keeps island expanded
         
         # Pulse animation timer for collapsed indicator
         self._pulse_timer = QTimer(self)
@@ -1149,8 +1195,8 @@ class DynamicIslandWindow(QWidget):
         # Count enabled apps
         app_count = sum(1 for app in self.config.get("apps", []) if app.get("enabled", True))
         
-        # Fixed buttons: notification history, settings, close = 3
-        fixed_buttons = 3
+        # Fixed buttons: notification history, pin, settings, close = 4
+        fixed_buttons = 4
         
         # Total buttons
         total_buttons = app_count + fixed_buttons
@@ -1222,6 +1268,11 @@ class DynamicIslandWindow(QWidget):
         notif_btn = GlowButton(ICON_BELL, "Histórico de Notificações (Ctrl+4)", self._show_notification_history, "#FFD700")
         notif_btn.setFixedSize(40, 40)
         btn_layout.addWidget(notif_btn)
+        
+        # Add pin button
+        self._pin_btn = GlowButton(ICON_PIN, "Fixar (manter aberto)", self._toggle_pin, "#888888")
+        self._pin_btn.setFixedSize(40, 40)
+        btn_layout.addWidget(self._pin_btn)
         
         # Add settings button
         settings_btn = GlowButton(ICON_SETTINGS, "Configurações", self._open_settings, "#888888")
@@ -1446,7 +1497,25 @@ class DynamicIslandWindow(QWidget):
         self.expand()
 
     def leaveEvent(self, _event) -> None:
-        self._collapse_timer.start()
+        # Don't collapse on mouse leave - only on click outside
+        pass
+    
+    def focusOutEvent(self, _event) -> None:
+        """Collapse when window loses focus (click outside)."""
+        if not self._is_pinned:
+            self._collapse_timer.start()
+    
+    def event(self, event) -> bool:
+        """Handle activation/deactivation events."""
+        from PyQt6.QtCore import QEvent
+        if event.type() == QEvent.Type.WindowDeactivate:
+            # Window lost focus - collapse if not pinned
+            if not self._is_pinned:
+                self._collapse_timer.start()
+        elif event.type() == QEvent.Type.WindowActivate:
+            # Window gained focus - cancel collapse
+            self._collapse_timer.stop()
+        return super().event(event)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         if event.button() == Qt.MouseButton.LeftButton:
@@ -1615,6 +1684,20 @@ class DynamicIslandWindow(QWidget):
         )
 
     # ─── Music Player ─────────────────────────────────────────────────────────
+    def _toggle_pin(self) -> None:
+        """Toggle pin state - keeps island expanded when pinned."""
+        self._is_pinned = not self._is_pinned
+        
+        if hasattr(self, '_pin_btn'):
+            if self._is_pinned:
+                self._pin_btn.setIcon(ICON_PIN_ACTIVE)
+                self._pin_btn.setToolTip("Desafixar (permitir minimizar)")
+                # Stop any pending collapse
+                self._collapse_timer.stop()
+            else:
+                self._pin_btn.setIcon(ICON_PIN)
+                self._pin_btn.setToolTip("Fixar (manter aberto)")
+    
     def _toggle_music_player(self) -> None:
         """Toggle music player controls visibility."""
         self._music_player_visible = not self._music_player_visible
