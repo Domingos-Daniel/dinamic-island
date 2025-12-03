@@ -240,6 +240,12 @@ class GlowButton(QWidget):
 
         self.renderer = QSvgRenderer(self.svg_data.encode())
 
+    def setIcon(self, svg_data: str) -> None:
+        """Update the button's SVG icon."""
+        self.svg_data = svg_data
+        self.renderer = QSvgRenderer(self.svg_data.encode())
+        self.update()
+
     # ─── Qt properties for animation ──────────────────────────────────────────
     @pyqtProperty(float)
     def scale(self) -> float:
@@ -966,6 +972,7 @@ class DynamicIslandWindow(QWidget):
         self._drag_position = None
         self._is_hidden = False
         self._pulse_phase = 0.0  # For pulse animation in collapsed state
+        self._is_playing = False  # Track music playing state
         
         # Pulse animation timer for collapsed indicator
         self._pulse_timer = QTimer(self)
@@ -1053,7 +1060,40 @@ class DynamicIslandWindow(QWidget):
         self.update()
 
     # ─── UI Setup ─────────────────────────────────────────────────────────────
+    def _calculate_expanded_width(self) -> int:
+        """Calculate expanded width dynamically based on content."""
+        # Base padding (left + right margins)
+        base_padding = 40
+        
+        # Count enabled apps
+        app_count = sum(1 for app in self.config.get("apps", []) if app.get("enabled", True))
+        
+        # Fixed buttons: notification history, settings, close = 3
+        fixed_buttons = 3
+        
+        # Total buttons
+        total_buttons = app_count + fixed_buttons
+        
+        # Button size (48px) + spacing (12px)
+        button_width = 48
+        spacing = 12
+        
+        # Calculate width
+        buttons_width = total_buttons * button_width + (total_buttons - 1) * spacing
+        
+        # Total expanded width with some extra padding
+        calculated_width = base_padding + buttons_width + 20
+        
+        # Minimum and maximum bounds
+        min_width = 200
+        max_width = 900
+        
+        return max(min_width, min(calculated_width, max_width))
+    
     def _build_ui(self) -> None:
+        # Calculate dynamic width
+        self.EXPANDED_WIDTH = self._calculate_expanded_width()
+        
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
@@ -1248,7 +1288,12 @@ class DynamicIslandWindow(QWidget):
         # Show container before expanding
         if hasattr(self, '_button_container'):
             self._button_container.setVisible(True)
-        self._animate_geometry(self.EXPANDED_WIDTH, self.EXPANDED_HEIGHT)
+        
+        # Calculate dynamic width including music controls if visible
+        music_extra = 150 if self._music_player_visible else 0
+        expand_width = self._calculate_expanded_width() + music_extra
+        
+        self._animate_geometry(expand_width, self.EXPANDED_HEIGHT)
         self._animate_opacity(1.0)
         self._animate_bg(0.12)
         self._collapse_timer.stop()
@@ -1395,37 +1440,62 @@ class DynamicIslandWindow(QWidget):
         
         if hasattr(self, "_music_controls"):
             self._music_controls.setVisible(self._music_player_visible)
+            
+            # Recalculate and animate to new width when expanded
+            if self.expanded:
+                music_extra = 150 if self._music_player_visible else 0
+                new_width = self._calculate_expanded_width() + music_extra
+                self._animate_geometry(new_width, self.EXPANDED_HEIGHT)
     
     def _music_play_pause(self) -> None:
         """Send play/pause command to Windows media."""
         try:
-            # VK_MEDIA_PLAY_PAUSE = 0xB3
             import ctypes
+            VK_MEDIA_PLAY_PAUSE = 0xB3
+            KEYEVENTF_EXTENDEDKEY = 0x0001
+            KEYEVENTF_KEYUP = 0x0002
+            
             user32 = ctypes.windll.user32
-            user32.keybd_event(0xB3, 0, 0, 0)
-            user32.keybd_event(0xB3, 0, 2, 0)
+            user32.keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_EXTENDEDKEY, 0)
+            user32.keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0)
+            
+            # Toggle playing state and update icon
+            self._is_playing = not self._is_playing
+            if hasattr(self, '_play_pause_btn'):
+                if self._is_playing:
+                    self._play_pause_btn.setIcon(ICON_PAUSE)
+                    self._play_pause_btn.setToolTip("Pausar")
+                else:
+                    self._play_pause_btn.setIcon(ICON_PLAY)
+                    self._play_pause_btn.setToolTip("Reproduzir")
         except Exception as exc:
             self._show_error(f"Erro ao controlar mídia: {exc}")
     
     def _music_prev(self) -> None:
         """Send previous track command."""
         try:
-            # VK_MEDIA_PREV_TRACK = 0xB1
             import ctypes
+            VK_MEDIA_PREV_TRACK = 0xB1
+            KEYEVENTF_EXTENDEDKEY = 0x0001
+            KEYEVENTF_KEYUP = 0x0002
+            
             user32 = ctypes.windll.user32
-            user32.keybd_event(0xB1, 0, 0, 0)
-            user32.keybd_event(0xB1, 0, 2, 0)
+            user32.keybd_event(VK_MEDIA_PREV_TRACK, 0, KEYEVENTF_EXTENDEDKEY, 0)
+            user32.keybd_event(VK_MEDIA_PREV_TRACK, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0)
         except Exception as exc:
             self._show_error(f"Erro ao voltar faixa: {exc}")
     
     def _music_next(self) -> None:
         """Send next track command."""
         try:
-            # VK_MEDIA_NEXT_TRACK = 0xB0
             import ctypes
+            VK_MEDIA_NEXT_TRACK = 0xB0
+            KEYEVENTF_EXTENDEDKEY = 0x0001
+            KEYEVENTF_KEYUP = 0x0002
+            
             user32 = ctypes.windll.user32
-            user32.keybd_event(0xB0, 0, 0, 0)
-            user32.keybd_event(0xB0, 0, 2, 0)
+            user32.keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENDEDKEY, 0)
+            user32.keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0)
         except Exception as exc:
             self._show_error(f"Erro ao avançar faixa: {exc}")
     
