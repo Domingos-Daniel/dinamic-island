@@ -56,8 +56,8 @@
       "enabled": true,
       "url": "",
       "path": "calc",
-      "color": "#888888",
-      "custom_icon": "",
+      "color": "#5500ff",
+      "custom_icon": "📉",
       "icon_name": "CUSTOM_CALCULADORA"
     }
   ],

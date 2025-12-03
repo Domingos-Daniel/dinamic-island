@@ -61,6 +61,7 @@ from PyQt6.QtWidgets import (
     QFormLayout,
     QGraphicsDropShadowEffect,
     QGraphicsOpacityEffect,
+    QGridLayout,
     QGroupBox,
     QHBoxLayout,
     QLabel,
@@ -72,6 +73,7 @@ from PyQt6.QtWidgets import (
     QScrollArea,
     QSizePolicy,
     QSpinBox,
+    QTabWidget,
     QVBoxLayout,
     QWidget,
 )
@@ -554,7 +556,12 @@ class AppEditorDialog(QDialog):
         # Icon (emoji or simple text)
         self.icon_edit = QLineEdit()
         self.icon_edit.setPlaceholderText("Ex: 🎵 📧 📱 ou deixe vazio para •")
-        layout.addRow("Ícone (emoji):", self.icon_edit)
+        icon_layout = QHBoxLayout()
+        icon_layout.addWidget(self.icon_edit)
+        icon_lib_btn = QPushButton("📚 Biblioteca")
+        icon_lib_btn.clicked.connect(self._show_icon_library)
+        icon_layout.addWidget(icon_lib_btn)
+        layout.addRow("Ícone (emoji):", icon_layout)
         
         # Enabled
         self.enabled_check = QCheckBox("Ativar este app")
@@ -589,9 +596,134 @@ class AppEditorDialog(QDialog):
     
     def _choose_color(self) -> None:
         """Choose icon color."""
-        color = QColorDialog.getColor()
+        # Temporarily disable always-on-top for parent window
+        main_window = self.parent()
+        if main_window and isinstance(main_window, QWidget):
+            parent_window = main_window.parent() if hasattr(main_window, 'parent') else main_window
+            if parent_window:
+                # Get current window flags
+                old_flags = parent_window.windowFlags()
+                # Remove always-on-top
+                parent_window.setWindowFlags(old_flags & ~Qt.WindowType.WindowStaysOnTopHint)
+                parent_window.show()
+        
+        # Show color picker
+        initial_color = QColor(self.color_edit.text() if self.color_edit.text() else "#888888")
+        color = QColorDialog.getColor(initial_color, self, "Escolher Cor do Ícone")
+        
+        # Restore always-on-top
+        if main_window and isinstance(main_window, QWidget):
+            parent_window = main_window.parent() if hasattr(main_window, 'parent') else main_window
+            if parent_window:
+                parent_window.setWindowFlags(old_flags)
+                parent_window.show()
+        
         if color.isValid():
             self.color_edit.setText(color.name())
+    
+    def _show_icon_library(self) -> None:
+        """Show icon library dialog with categorized emojis."""
+        dialog = QDialog(self)
+        dialog.setWindowTitle("📚 Biblioteca de Ícones")
+        dialog.setMinimumSize(500, 450)
+        
+        layout = QVBoxLayout(dialog)
+        
+        # Icon categories
+        icon_categories = {
+            "🎨 Apps & Tech": [
+                "💻", "🖥️", "⌨️", "🖱️", "🖨️", "📱", "📞", "☎️", "📟", "📠",
+                "📺", "📻", "🎙️", "🎚️", "🎛️", "🧭", "⏱️", "⏰", "⏲️", "🕰️"
+            ],
+            "🎵 Mídia": [
+                "🎵", "🎶", "🎼", "🎹", "🎸", "🎺", "🎷", "🥁", "🎤", "🎧",
+                "📻", "📀", "💿", "📼", "📹", "📷", "📸", "🎬", "🎞️", "📽️"
+            ],
+            "📧 Comunicação": [
+                "📧", "📨", "📩", "📤", "📥", "📮", "📬", "📭", "📫", "📪",
+                "✉️", "💌", "💬", "💭", "🗨️", "🗯️", "💡", "🔔", "🔕", "📢"
+            ],
+            "🎮 Entretenimento": [
+                "🎮", "🕹️", "🎯", "🎲", "🃏", "🎰", "🎳", "🎪", "🎨", "🎭",
+                "🎬", "🎤", "🎧", "🎼", "🎹", "🎸", "🎺", "🎷", "🥁", "🎻"
+            ],
+            "💼 Produtividade": [
+                "💼", "📊", "📈", "📉", "📋", "📌", "📍", "📎", "🖇️", "📏",
+                "📐", "✂️", "🗂️", "🗃️", "🗄️", "🗑️", "📁", "📂", "🗒️", "📝"
+            ],
+            "🌐 Web & Social": [
+                "🌐", "🌍", "🌎", "🌏", "🗺️", "💬", "💭", "🗨️", "💌", "📱",
+                "📲", "📞", "☎️", "📧", "👤", "👥", "👨‍💻", "👩‍💻", "🤝", "💡"
+            ],
+            "🛠️ Ferramentas": [
+                "🔧", "🔨", "⚒️", "🛠️", "⚙️", "🔩", "⚡", "🔥", "💧", "🌊",
+                "🔑", "🗝️", "🔒", "🔓", "🔐", "🛡️", "⚔️", "🏹", "🔱", "⚖️"
+            ],
+            "🎯 Outros": [
+                "⭐", "✨", "🌟", "💫", "🔆", "🔅", "☀️", "🌙", "⚡", "🔥",
+                "💎", "💰", "🏆", "🎖️", "🥇", "🥈", "🥉", "🏅", "🎗️", "🎀"
+            ]
+        }
+        
+        # Create tab widget for categories
+        tabs = QTabWidget()
+        
+        for category, icons in icon_categories.items():
+            # Create widget for this category
+            category_widget = QWidget()
+            category_layout = QVBoxLayout(category_widget)
+            
+            # Create grid of icon buttons
+            grid = QGridLayout()
+            grid.setSpacing(8)
+            
+            row, col = 0, 0
+            for icon in icons:
+                btn = QPushButton(icon)
+                btn.setFixedSize(50, 50)
+                btn.setStyleSheet("""
+                    QPushButton {
+                        font-size: 24px;
+                        background: #2a2a2a;
+                        border: 2px solid #444;
+                        border-radius: 8px;
+                    }
+                    QPushButton:hover {
+                        background: #3a3a3a;
+                        border-color: #666;
+                    }
+                    QPushButton:pressed {
+                        background: #1a1a1a;
+                    }
+                """)
+                btn.clicked.connect(lambda checked, i=icon: self._select_icon(i, dialog))
+                grid.addWidget(btn, row, col)
+                
+                col += 1
+                if col >= 8:  # 8 icons per row
+                    col = 0
+                    row += 1
+            
+            category_layout.addLayout(grid)
+            category_layout.addStretch()
+            
+            # Extract just the emoji from category name for tab
+            tab_icon = category.split()[0]
+            tabs.addTab(category_widget, tab_icon)
+        
+        layout.addWidget(tabs)
+        
+        # Close button
+        close_btn = QPushButton("Fechar")
+        close_btn.clicked.connect(dialog.close)
+        layout.addWidget(close_btn)
+        
+        dialog.exec()
+    
+    def _select_icon(self, icon: str, dialog: QDialog) -> None:
+        """Select an icon from the library."""
+        self.icon_edit.setText(icon)
+        dialog.close()
     
     def _scan_installed_apps(self) -> None:
         """Scan and show installed Windows apps."""
@@ -1210,13 +1342,46 @@ class DynamicIslandWindow(QWidget):
             self.EXPANDED_WIDTH = self.config.get("expanded_width", 650)
             self._collapse_timer.setInterval(self.config.get("auto_collapse_delay", 3000))
             
-            # Show restart message
+            # Rebuild UI with new apps
+            self._rebuild_ui()
+            
+            # Show success message
             QMessageBox.information(
                 self,
-                "Configurações Salvas",
-                "As configurações foram salvas!\n\nReinicie o Dynamic Island para aplicar todas as alterações.",
+                "✅ Configurações Aplicadas",
+                "As configurações foram salvas e aplicadas com sucesso!",
                 QMessageBox.StandardButton.Ok
             )
+    
+    def _rebuild_ui(self) -> None:
+        """Rebuild the UI with current configuration."""
+        # Remove old button container
+        if hasattr(self, '_button_container') and self._button_container:
+            self._button_container.setParent(None)
+            self._button_container.deleteLater()
+        
+        # Clear existing layout
+        old_layout = self.layout()
+        if old_layout:
+            while old_layout.count():
+                item = old_layout.takeAt(0)
+                if item.widget():
+                    item.widget().deleteLater()
+            QWidget().setLayout(old_layout)  # Transfer ownership to delete it
+        
+        # Rebuild UI
+        self._build_ui()
+        
+        # Update music controls visibility
+        music_enabled = self.config.get("music_controls_enabled", True)
+        if hasattr(self, '_music_controls'):
+            self._music_controls.setVisible(music_enabled)
+        
+        # Reset to collapsed state
+        if self.expanded:
+            self.collapse()
+        else:
+            self._set_geometry(self.COLLAPSED_WIDTH, self.COLLAPSED_HEIGHT)
 
     # ─── Launch helpers ───────────────────────────────────────────────────────
     def _open_url(self, url: str) -> None:
