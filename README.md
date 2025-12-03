@@ -3,11 +3,27 @@
 Pequeno utilitário PyQt6 inspirado no Dynamic Island do iPhone. Cria uma janela arredondada, preta, sem moldura e sempre no topo, com botões animados para abrir apps e páginas comuns.
 
 ## Funcionalidades
+- 🔔 **Sistema de Notificações** – Mostra notificações de TODOS os apps do Windows (WhatsApp, Email, etc.)
 - 🎵 **Controles de música** – Play/pause, anterior, próxima (funciona com Spotify, YouTube, etc.)
 - 🚀 **Apps rápidos** – WhatsApp, Facebook, LinkedIn, VS Code, Brave, Sticky Notes
+- ⚙️ **Totalmente configurável** – Adicione seus próprios apps, URLs e ícones personalizados
 - 🎨 **UI estilo iPhone** – Animações suaves, ícones SVG coloridos, efeitos glassmorphism
 - 🖱️ **Arrastável** – Clique e arraste para mover para qualquer posição
-- ⌨️ **Atalho global** – Pressione `Ctrl+1` para ocultar/mostrar o Dynamic Island
+- ⌨️ **Atalhos globais** – 
+  - `Ctrl+1` para ocultar/mostrar o Dynamic Island
+  - `Ctrl+3` para testar o sistema de notificações
+
+## Como funcionam as notificações
+O Dynamic Island monitora automaticamente as notificações do Windows em tempo real:
+- Detecta notificações de WhatsApp, Gmail, Spotify, Discord, Teams e qualquer outro app
+- Expande automaticamente quando uma notificação chega
+- Mostra o nome do app e a mensagem de forma discreta
+- Desaparece após 4 segundos
+
+**Para testar:**
+1. Execute o Dynamic Island
+2. Pressione `Ctrl+3` para ver uma notificação de teste
+3. Ou receba uma mensagem real no WhatsApp/Email/etc
 
 ## Requisitos
 - Python 3.10 ou superior

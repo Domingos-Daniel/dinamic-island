@@ -15,12 +15,15 @@ import math
 import os
 import subprocess
 import sys
+import threading
+import time
 import webbrowser
 from pathlib import Path
 from typing import Callable
 
 from PyQt6.QtCore import (
     QEasingCurve,
+    QMetaObject,
     QParallelAnimationGroup,
     QPoint,
     QPointF,
@@ -34,6 +37,8 @@ from PyQt6.QtCore import (
     QVariantAnimation,
     pyqtProperty,
     pyqtSignal,
+    pyqtSlot,
+    Q_ARG,
 )
 from PyQt6.QtGui import (
     QBrush,
@@ -84,6 +89,15 @@ try:
     KEYBOARD_AVAILABLE = True
 except ImportError:
     KEYBOARD_AVAILABLE = False
+
+# For Windows notifications monitoring
+try:
+    import winrt.windows.ui.notifications as notifications
+    from winrt.windows.ui.notifications import ToastNotificationManager
+    WINRT_AVAILABLE = True
+except ImportError:
+    WINRT_AVAILABLE = False
+    print("[WARN] winrt não disponível - notificações do Windows não funcionarão")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -174,6 +188,12 @@ ICON_CLOSE = """
 ICON_SETTINGS = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="#888888"/>
+</svg>
+"""
+
+ICON_BELL = """
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="#FFD700"/>
 </svg>
 """
 
@@ -908,12 +928,12 @@ class AppEditorDialog(QDialog):
 class DynamicIslandWindow(QWidget):
     """The floating pill-shaped launcher widget with spring-like animations."""
 
-    COLLAPSED_WIDTH = 220
+    COLLAPSED_WIDTH = 100
     COLLAPSED_HEIGHT = 38
     EXPANDED_WIDTH = 650
     EXPANDED_HEIGHT = 90
     TOP_MARGIN = 12
-    CORNER_RADIUS = 36
+    CORNER_RADIUS = 20
 
     def __init__(self) -> None:
         super().__init__()
@@ -962,13 +982,27 @@ class DynamicIslandWindow(QWidget):
         self._collapse_timer.setInterval(collapse_delay)
         self._collapse_timer.setSingleShot(True)
         self._collapse_timer.timeout.connect(self.collapse)
+        
+        # Notification system - initialize BEFORE _build_ui
+        self._notification_label = None  # Will be created in _build_ui
+        self._notification_timer = QTimer(self)
+        self._notification_timer.setSingleShot(True)
+        self._notification_timer.timeout.connect(self._hide_notification)
+        self._notification_history = []  # Store notification history
 
         self._build_ui()
         self._set_geometry(self.COLLAPSED_WIDTH, self.COLLAPSED_HEIGHT)
         
+        # Start Windows notification listener in background thread
+        self._notification_thread = None
+        self._notification_running = False
+        self._start_notification_listener()
+        
         # Setup global hotkey Ctrl+1 to toggle visibility
         if KEYBOARD_AVAILABLE:
             keyboard.add_hotkey('ctrl+1', self._toggle_visibility)
+            keyboard.add_hotkey('ctrl+3', self._test_notification)  # Test notifications
+            keyboard.add_hotkey('ctrl+4', self._show_notification_history)  # Show history
     
     def _load_config(self) -> dict:
         """Load configuration from JSON file."""
@@ -1051,6 +1085,11 @@ class DynamicIslandWindow(QWidget):
             btn = GlowButton(svg, tip, action, color)
             btn_layout.addWidget(btn)
         
+        # Add notification history button
+        notif_btn = GlowButton(ICON_BELL, "Histórico de Notificações (Ctrl+4)", self._show_notification_history, "#FFD700")
+        notif_btn.setFixedSize(40, 40)
+        btn_layout.addWidget(notif_btn)
+        
         # Add settings button
         settings_btn = GlowButton(ICON_SETTINGS, "Configurações", self._open_settings, "#888888")
         settings_btn.setFixedSize(40, 40)
@@ -1061,7 +1100,24 @@ class DynamicIslandWindow(QWidget):
         close_btn.setFixedSize(40, 40)
         btn_layout.addWidget(close_btn)
 
+        # Notification area (hidden by default) - ABOVE buttons
+        self._notification_label = QLabel()
+        self._notification_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._notification_label.setStyleSheet("""
+            QLabel {
+                color: #FFFFFF;
+                font-size: 13px;
+                font-weight: bold;
+                padding: 8px 16px;
+                background: rgba(50, 50, 50, 0.8);
+                border-radius: 12px;
+            }
+        """)
+        self._notification_label.setVisible(False)
+        self._notification_label.setMinimumWidth(300)
+        
         layout.addStretch()
+        layout.addWidget(self._notification_label, alignment=Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self._button_container, alignment=Qt.AlignmentFlag.AlignCenter)
         layout.addStretch()
 
@@ -1223,6 +1279,11 @@ class DynamicIslandWindow(QWidget):
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         if event.button() == Qt.MouseButton.LeftButton:
             self._drag_position = None
+            # Recenter horizontally when released
+            screen = self._screen_rect()
+            current_geo = self.geometry()
+            x = screen.x() + (screen.width() - current_geo.width()) // 2
+            self.move(x, current_geo.y())
             event.accept()
 
     # ─── Painting ─────────────────────────────────────────────────────────────
@@ -1329,6 +1390,10 @@ class DynamicIslandWindow(QWidget):
         )
         
         if reply == QMessageBox.StandardButton.Yes:
+            # Stop notification listener
+            self._notification_running = False
+            if self._notification_thread:
+                self._notification_thread.join(timeout=1)
             QApplication.quit()
     
     def _open_settings(self) -> None:
@@ -1509,6 +1574,394 @@ class DynamicIslandWindow(QWidget):
             subprocess.Popen(["cmd", "/c", "start", "ms-stickynotes:"])
         except Exception as exc:
             self._show_error(f"Sticky Notes: {exc}")
+    
+    # ─── Notification System ──────────────────────────────────────────────────
+    def _start_notification_listener(self) -> None:
+        """Start background thread to listen for Windows notifications."""
+        self._notification_running = True
+        self._notification_thread = threading.Thread(
+            target=self._notification_listener_thread,
+            daemon=True
+        )
+        self._notification_thread.start()
+    
+    def _notification_listener_thread(self) -> None:
+        """Background thread that monitors Windows notifications."""
+        import sqlite3
+        import os
+        import re
+        
+        # Track seen notifications
+        seen_notifications = set()
+        
+        # Wait for UI to initialize
+        time.sleep(3)
+        
+        # Path to Windows Notification database
+        notification_db = os.path.join(
+            os.environ.get("LOCALAPPDATA", ""),
+            "Microsoft", "Windows", "Notifications", "wpndatabase.db"
+        )
+        
+        print(f"[INFO] Monitorando notificações do Windows...")
+        print(f"[INFO] Banco: {notification_db}")
+        
+        while self._notification_running:
+            try:
+                # Method 1: Try to read Windows Notification Database
+                if os.path.exists(notification_db):
+                    try:
+                        # Copy DB to temp to avoid lock issues
+                        import shutil
+                        import tempfile
+                        temp_db = os.path.join(tempfile.gettempdir(), "wpndatabase_copy.db")
+                        shutil.copy2(notification_db, temp_db)
+                        
+                        conn = sqlite3.connect(temp_db)
+                        cursor = conn.cursor()
+                        
+                        # Query only very recent notifications (last 60 seconds)
+                        import time as time_module
+                        current_time = int(time_module.time())
+                        
+                        cursor.execute("""
+                            SELECT Id, Type, Payload, ArrivalTime 
+                            FROM Notification 
+                            WHERE ArrivalTime > ?
+                            ORDER BY ArrivalTime DESC 
+                            LIMIT 5
+                        """, (current_time - 60,))
+                        
+                        for row in cursor.fetchall():
+                            notif_id, notif_type, payload, arrival_time = row
+                            
+                            if notif_id not in seen_notifications:
+                                seen_notifications.add(notif_id)
+                                
+                                # Parse payload for app name and message
+                                try:
+                                    if payload:
+                                        payload_str = payload.decode('utf-8', errors='ignore') if isinstance(payload, bytes) else str(payload)
+                                        
+                                        # Extract app name from payload
+                                        app_name = ""
+                                        app_match = re.search(r'displayName="([^"]+)"', payload_str)
+                                        if app_match:
+                                            app_name = app_match.group(1)
+                                        
+                                        # Also try to get app from launch attribute
+                                        if not app_name:
+                                            launch_match = re.search(r'launch="([^"]+)"', payload_str)
+                                            if launch_match:
+                                                app_name = launch_match.group(1).split('!')[-1].split('\\')[-1]
+                                        
+                                        # Extract text from XML payload
+                                        text_matches = re.findall(r'<text[^>]*>([^<]+)</text>', payload_str)
+                                        
+                                        if text_matches:
+                                            # First text is usually title, second is message
+                                            title = text_matches[0] if len(text_matches) > 0 else "Nova notificação"
+                                            msg = text_matches[1] if len(text_matches) > 1 else ""
+                                            
+                                            notification_text = f"{title}"
+                                            if msg:
+                                                notification_text += f": {msg[:30]}"
+                                            
+                                            self._queue_notification(notification_text, app_name)
+                                except Exception:
+                                    pass
+                        
+                        conn.close()
+                        os.remove(temp_db)
+                        
+                    except Exception:
+                        pass
+                
+                # Also check window titles as fallback
+                self._check_window_titles(seen_notifications)
+                
+            except Exception:
+                pass
+            
+            # Check every 5 seconds
+            time.sleep(5)
+    
+    def _check_window_titles(self, seen_notifications: set) -> None:
+        """Check window titles for notification indicators."""
+        import ctypes
+        from ctypes import wintypes
+        
+        try:
+            user32 = ctypes.windll.user32
+            EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+            
+            def enum_callback(hwnd, lParam):
+                length = user32.GetWindowTextLengthW(hwnd)
+                if length > 0:
+                    buffer = ctypes.create_unicode_buffer(length + 1)
+                    user32.GetWindowTextW(hwnd, buffer, length + 1)
+                    title = buffer.value
+                    
+                    # Check for "(X) AppName" pattern
+                    if title and title.startswith("(") and ")" in title:
+                        try:
+                            parts = title.split(")", 1)
+                            count = parts[0].strip("()")
+                            app_name = parts[1].strip() if len(parts) > 1 else title
+                            
+                            notif_key = f"window:{app_name}:{count}"
+                            if notif_key not in seen_notifications and count.isdigit() and int(count) > 0:
+                                seen_notifications.add(notif_key)
+                                msg = f"{count} nova(s)" if int(count) > 1 else "Nova mensagem"
+                                self._queue_notification(f"{app_name}: {msg}", app_name)
+                        except:
+                            pass
+                return True
+            
+            user32.EnumWindows(EnumWindowsProc(enum_callback), 0)
+        except:
+            pass
+    
+    def _queue_notification(self, message: str, app_name: str = "") -> None:
+        """Queue notification to be shown in UI thread."""
+        # Use QMetaObject to safely invoke in main thread
+        QMetaObject.invokeMethod(
+            self, 
+            "_show_notification_slot",
+            Qt.ConnectionType.QueuedConnection,
+            Q_ARG(str, message),
+            Q_ARG(str, app_name)
+        )
+    
+    @pyqtSlot(str, str)
+    def _show_notification_slot(self, text: str, app_name: str = "") -> None:
+        """Slot to show notification (called from main thread)."""
+        self._show_notification(text, app_name)
+    
+    def _show_notification(self, text: str, app_name: str = "") -> None:
+        """Show notification in the Dynamic Island."""
+        
+        if not hasattr(self, '_notification_label') or self._notification_label is None:
+            return
+        
+        # Stop collapse timer while showing notification
+        if self._collapse_timer.isActive():
+            self._collapse_timer.stop()
+        
+        # Get app icon emoji based on app name
+        app_icons = {
+            "whatsapp": "💬",
+            "linkedin": "💼",
+            "facebook": "👤",
+            "messenger": "💬",
+            "instagram": "📸",
+            "twitter": "🐦",
+            "x": "🐦",
+            "telegram": "✈️",
+            "discord": "🎮",
+            "slack": "💼",
+            "teams": "👥",
+            "outlook": "📧",
+            "gmail": "📧",
+            "mail": "📧",
+            "email": "📧",
+            "spotify": "🎵",
+            "youtube": "▶️",
+            "chrome": "🌐",
+            "edge": "🌐",
+            "brave": "🦁",
+            "firefox": "🦊",
+            "vscode": "💻",
+            "code": "💻",
+            "chat": "💬",
+            "sms": "📱",
+            "phone": "📞",
+            "calendar": "📅",
+            "reminder": "⏰",
+            "alarm": "⏰",
+            "news": "📰",
+            "update": "🔄",
+            "download": "⬇️",
+            "upload": "⬆️",
+            "settings": "⚙️",
+            "security": "🔒",
+            "warning": "⚠️",
+            "error": "❌",
+            "success": "✅",
+        }
+        
+        # Find matching icon
+        icon = "🔔"  # Default icon
+        app_lower = app_name.lower() if app_name else text.lower()
+        for key, emoji in app_icons.items():
+            if key in app_lower:
+                icon = emoji
+                break
+        
+        # Format notification text with icon
+        display_text = f"{icon} {text[:60]}"
+        
+        # Add to history
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        history_entry = {
+            "time": timestamp,
+            "icon": icon,
+            "text": text,
+            "app": app_name or "Sistema"
+        }
+        
+        # Keep only last 50 notifications
+        if not hasattr(self, '_notification_history'):
+            self._notification_history = []
+        self._notification_history.insert(0, history_entry)
+        if len(self._notification_history) > 50:
+            self._notification_history = self._notification_history[:50]
+        
+        # Set notification text
+        self._notification_label.setText(display_text)
+        self._notification_label.setVisible(True)
+        self._notification_label.raise_()  # Bring to front
+        
+        # Force expand island
+        if not self.expanded:
+            self.expand()
+        
+        # Play notification sound
+        self._play_notification_sound()
+        
+        # Force repaint
+        self._notification_label.update()
+        self.update()
+        
+        # Auto-hide notification after 4 seconds (only if timer exists and in main thread)
+        if hasattr(self, '_notification_timer') and self._notification_timer:
+            if self._notification_timer.isActive():
+                self._notification_timer.stop()
+            self._notification_timer.start(4000)
+    
+    def _show_notification_history(self) -> None:
+        """Show notification history dialog."""
+        dialog = QDialog(self)
+        dialog.setWindowTitle("🔔 Histórico de Notificações")
+        dialog.setMinimumSize(500, 400)
+        dialog.setStyleSheet("""
+            QDialog {
+                background: #1a1a1a;
+            }
+            QLabel {
+                color: #ffffff;
+            }
+            QListWidget {
+                background: #2a2a2a;
+                border: 1px solid #444;
+                border-radius: 8px;
+                color: #ffffff;
+                font-size: 13px;
+            }
+            QListWidget::item {
+                padding: 10px;
+                border-bottom: 1px solid #333;
+            }
+            QListWidget::item:hover {
+                background: #3a3a3a;
+            }
+            QPushButton {
+                background: #3a3a3a;
+                border: 1px solid #555;
+                border-radius: 6px;
+                color: #ffffff;
+                padding: 8px 16px;
+            }
+            QPushButton:hover {
+                background: #4a4a4a;
+            }
+        """)
+        
+        layout = QVBoxLayout(dialog)
+        
+        # Header
+        header = QLabel(f"📋 Últimas {len(self._notification_history)} notificações")
+        header.setStyleSheet("font-size: 16px; font-weight: bold; padding: 10px;")
+        layout.addWidget(header)
+        
+        # Notification list
+        notif_list = QListWidget()
+        
+        if not self._notification_history:
+            notif_list.addItem("Nenhuma notificação ainda...")
+        else:
+            for entry in self._notification_history:
+                icon = entry.get("icon", "🔔")
+                time_str = entry.get("time", "")
+                text = entry.get("text", "")
+                app = entry.get("app", "")
+                
+                item_text = f"{icon}  [{time_str}]  {text}"
+                if app:
+                    item_text += f"\n      📱 {app}"
+                
+                item = QListWidgetItem(item_text)
+                notif_list.addItem(item)
+        
+        layout.addWidget(notif_list)
+        
+        # Buttons
+        btn_layout = QHBoxLayout()
+        
+        clear_btn = QPushButton("🗑️ Limpar Histórico")
+        clear_btn.clicked.connect(lambda: self._clear_notification_history(notif_list))
+        btn_layout.addWidget(clear_btn)
+        
+        btn_layout.addStretch()
+        
+        close_btn = QPushButton("Fechar")
+        close_btn.clicked.connect(dialog.close)
+        btn_layout.addWidget(close_btn)
+        
+        layout.addLayout(btn_layout)
+        
+        dialog.exec()
+    
+    def _clear_notification_history(self, list_widget: QListWidget) -> None:
+        """Clear notification history."""
+        self._notification_history = []
+        list_widget.clear()
+        list_widget.addItem("Histórico limpo!")
+    
+    def _play_notification_sound(self) -> None:
+        """Play a notification sound."""
+        try:
+            import winsound
+            # Play Windows default notification sound
+            winsound.PlaySound("SystemNotification", winsound.SND_ALIAS | winsound.SND_ASYNC)
+        except Exception:
+            try:
+                # Fallback: play a beep
+                import winsound
+                winsound.MessageBeep(winsound.MB_ICONINFORMATION)
+            except Exception:
+                pass  # Silently fail if no sound available
+    
+    def _hide_notification(self) -> None:
+        """Hide notification."""
+        if hasattr(self, '_notification_label') and self._notification_label:
+            self._notification_label.setVisible(False)
+    
+    def _test_notification(self) -> None:
+        """Test notification system (for debugging)."""
+        import random
+        test_apps = ["WhatsApp", "Gmail", "Spotify", "Discord", "Teams", "Slack", "LinkedIn", "Instagram"]
+        test_messages = [
+            "Nova mensagem recebida",
+            "3 novas notificações",
+            "Reunião em 5 minutos",
+            "Download concluído",
+            "Atualização disponível"
+        ]
+        app = random.choice(test_apps)
+        msg = random.choice(test_messages)
+        self._show_notification(f"{app}: {msg}", app)
 
     def _show_error(self, msg: str) -> None:
         """Show error message dialog."""
