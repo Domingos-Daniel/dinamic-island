@@ -360,7 +360,7 @@ class SettingsDialog(QDialog):
             "music_controls_enabled": True,
             "auto_collapse_delay": 3000,
             "expanded_width": 650,
-            "collapsed_width": 220
+            "collapsed_width": 50
         }
     
     def _build_ui(self) -> None:
@@ -928,12 +928,12 @@ class AppEditorDialog(QDialog):
 class DynamicIslandWindow(QWidget):
     """The floating pill-shaped launcher widget with spring-like animations."""
 
-    COLLAPSED_WIDTH = 100
-    COLLAPSED_HEIGHT = 38
+    COLLAPSED_WIDTH = 50
+    COLLAPSED_HEIGHT = 28
     EXPANDED_WIDTH = 650
     EXPANDED_HEIGHT = 90
     TOP_MARGIN = 12
-    CORNER_RADIUS = 20
+    CORNER_RADIUS = 14
 
     def __init__(self) -> None:
         super().__init__()
@@ -944,7 +944,7 @@ class DynamicIslandWindow(QWidget):
         
         # Apply config values
         self.EXPANDED_WIDTH = self.config.get("expanded_width", 650)
-        self.COLLAPSED_WIDTH = self.config.get("collapsed_width", 220)
+        self.COLLAPSED_WIDTH = self.config.get("collapsed_width", 50)
 
         # Window flags: frameless, always-on-top, tool window (no taskbar)
         self.setWindowFlags(
@@ -953,6 +953,9 @@ class DynamicIslandWindow(QWidget):
             | Qt.WindowType.Tool
         )
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        
+        # Allow very small size when collapsed
+        self.setMinimumSize(30, 20)
 
         # Internal state
         self.expanded = False
@@ -962,6 +965,13 @@ class DynamicIslandWindow(QWidget):
         self._music_player_visible = False
         self._drag_position = None
         self._is_hidden = False
+        self._pulse_phase = 0.0  # For pulse animation in collapsed state
+        
+        # Pulse animation timer for collapsed indicator
+        self._pulse_timer = QTimer(self)
+        self._pulse_timer.setInterval(50)  # 20 FPS
+        self._pulse_timer.timeout.connect(self._update_pulse)
+        self._pulse_timer.start()
 
         # Geometry animation (spring-like)
         self._geom_anim = QPropertyAnimation(self, b"geometry")
@@ -991,6 +1001,8 @@ class DynamicIslandWindow(QWidget):
         self._notification_history = []  # Store notification history
 
         self._build_ui()
+        # Hide button container initially (collapsed state)
+        self._button_container.setVisible(False)
         self._set_geometry(self.COLLAPSED_WIDTH, self.COLLAPSED_HEIGHT)
         
         # Start Windows notification listener in background thread
@@ -1014,7 +1026,7 @@ class DynamicIslandWindow(QWidget):
             "music_controls_enabled": True,
             "auto_collapse_delay": 3000,
             "expanded_width": 650,
-            "collapsed_width": 220
+            "collapsed_width": 50
         }
 
     # ─── Qt custom properties ─────────────────────────────────────────────────
@@ -1114,7 +1126,6 @@ class DynamicIslandWindow(QWidget):
             }
         """)
         self._notification_label.setVisible(False)
-        self._notification_label.setMinimumWidth(300)
         
         layout.addStretch()
         layout.addWidget(self._notification_label, alignment=Qt.AlignmentFlag.AlignCenter)
@@ -1234,6 +1245,9 @@ class DynamicIslandWindow(QWidget):
         if self.expanded:
             return
         self.expanded = True
+        # Show container before expanding
+        if hasattr(self, '_button_container'):
+            self._button_container.setVisible(True)
         self._animate_geometry(self.EXPANDED_WIDTH, self.EXPANDED_HEIGHT)
         self._animate_opacity(1.0)
         self._animate_bg(0.12)
@@ -1243,9 +1257,19 @@ class DynamicIslandWindow(QWidget):
         if not self.expanded:
             return
         self.expanded = False
+        # Hide container BEFORE animation to allow small size
+        if hasattr(self, '_button_container'):
+            self._button_container.setVisible(False)
+        if hasattr(self, '_notification_label'):
+            self._notification_label.setVisible(False)
         self._animate_geometry(self.COLLAPSED_WIDTH, self.COLLAPSED_HEIGHT)
         self._animate_opacity(0.0)
         self._animate_bg(0.0)
+    
+    def _hide_container_if_collapsed(self) -> None:
+        """Hide button container when collapsed to allow small size."""
+        if not self.expanded and hasattr(self, '_button_container'):
+            self._button_container.setVisible(False)
 
     def _animate_opacity(self, target: float) -> None:
         self._opacity_anim.stop()
@@ -1287,6 +1311,12 @@ class DynamicIslandWindow(QWidget):
             event.accept()
 
     # ─── Painting ─────────────────────────────────────────────────────────────
+    def _update_pulse(self) -> None:
+        """Update pulse animation phase."""
+        self._pulse_phase = (self._pulse_phase + 0.08) % (2 * math.pi)
+        if not self.expanded:
+            self.update()  # Only repaint when collapsed
+    
     def paintEvent(self, _event) -> None:
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
@@ -1328,6 +1358,35 @@ class DynamicIslandWindow(QWidget):
             int(rect.right() - radius),
             rect.top() + 1,
         )
+        
+        # Draw animated indicator when collapsed (like iPhone's camera/mic indicator)
+        if not self.expanded and rect.width() <= 100:
+            # Pulsing glow effect
+            pulse = (math.sin(self._pulse_phase) + 1) / 2  # 0 to 1
+            
+            # Center dot with glow
+            center_x = rect.center().x()
+            center_y = rect.center().y()
+            
+            # Outer glow
+            glow_radius = 4 + pulse * 2
+            glow_color = QColor(100, 200, 255, int(40 + 30 * pulse))
+            glow_gradient = QRadialGradient(center_x, center_y, glow_radius * 2)
+            glow_gradient.setColorAt(0, glow_color)
+            glow_gradient.setColorAt(1, QColor(100, 200, 255, 0))
+            painter.setBrush(glow_gradient)
+            painter.setPen(Qt.PenStyle.NoPen)
+            painter.drawEllipse(QPointF(center_x, center_y), glow_radius * 2, glow_radius * 2)
+            
+            # Inner bright dot
+            dot_radius = 3 + pulse * 0.5
+            dot_color = QColor(150, 220, 255, int(180 + 75 * pulse))
+            painter.setBrush(dot_color)
+            painter.drawEllipse(QPointF(center_x, center_y), dot_radius, dot_radius)
+            
+            # Tiny white center
+            painter.setBrush(QColor(255, 255, 255, int(200 + 55 * pulse)))
+            painter.drawEllipse(QPointF(center_x, center_y), 1.5, 1.5)
 
     # ─── Music Player ─────────────────────────────────────────────────────────
     def _toggle_music_player(self) -> None:
@@ -1371,13 +1430,28 @@ class DynamicIslandWindow(QWidget):
             self._show_error(f"Erro ao avançar faixa: {exc}")
     
     def _toggle_visibility(self) -> None:
-        """Toggle window visibility (show/hide)."""
+        """Toggle window visibility - minimize to tray or restore."""
         if self._is_hidden:
+            # Restore window
             self.show()
+            self.activateWindow()
             self._is_hidden = False
+            # Re-center on screen
+            screen = self._screen_rect()
+            current_geo = self.geometry()
+            x = screen.x() + (screen.width() - current_geo.width()) // 2
+            y = screen.y() + self.TOP_MARGIN
+            self.move(x, y)
         else:
-            self.hide()
-            self._is_hidden = True
+            # Minimize - collapse first then hide
+            if self.expanded:
+                self.collapse()
+            QTimer.singleShot(500, self._do_hide)
+    
+    def _do_hide(self) -> None:
+        """Actually hide the window after collapse animation."""
+        self.hide()
+        self._is_hidden = True
     
     def _close_app(self) -> None:
         """Close the application with confirmation."""
