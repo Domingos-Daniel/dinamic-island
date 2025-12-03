@@ -49,6 +49,16 @@
       "enabled": true,
       "icon_name": "ICON_MUSIC",
       "color": "#FF6B9D"
+    },
+    {
+      "name": "Calculadora",
+      "type": "local",
+      "enabled": true,
+      "url": "",
+      "path": "calc",
+      "color": "#888888",
+      "custom_icon": "",
+      "icon_name": "CUSTOM_CALCULADORA"
     }
   ],
   "music_controls_enabled": true,

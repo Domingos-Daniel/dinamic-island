@@ -536,6 +536,9 @@ class AppEditorDialog(QDialog):
         browse_btn = QPushButton("📂 Procurar")
         browse_btn.clicked.connect(self._browse_file)
         path_layout.addWidget(browse_btn)
+        scan_btn = QPushButton("🔍 Scanear Apps")
+        scan_btn.clicked.connect(self._scan_installed_apps)
+        path_layout.addWidget(scan_btn)
         layout.addRow("Caminho/Comando:", path_layout)
         
         # Color
@@ -589,6 +592,152 @@ class AppEditorDialog(QDialog):
         color = QColorDialog.getColor()
         if color.isValid():
             self.color_edit.setText(color.name())
+    
+    def _scan_installed_apps(self) -> None:
+        """Scan and show installed Windows apps."""
+        # Get apps (optimized, should be fast)
+        apps = self._find_installed_apps()
+        
+        if not apps:
+            QMessageBox.information(self, "Apps", "Nenhum app encontrado.")
+            return
+        
+        # Create selection dialog
+        dialog = QDialog(self)
+        dialog.setWindowTitle(f"Selecionar App ({len(apps)} encontrados)")
+        dialog.setMinimumSize(600, 450)
+        
+        layout = QVBoxLayout(dialog)
+        
+        # Info label
+        info_label = QLabel(f"✅ {len(apps)} aplicativos encontrados. Use a busca para filtrar:")
+        layout.addWidget(info_label)
+        
+        # Search box
+        search_box = QLineEdit()
+        search_box.setPlaceholderText("🔍 Digite para filtrar (ex: chrome, spotify, discord)...")
+        layout.addWidget(search_box)
+        
+        # App list
+        app_list = QListWidget()
+        for app_name, app_path in sorted(apps):
+            # Show different icons for system vs installed apps
+            icon = "🪟" if app_path in ["calc", "notepad", "mspaint", "wordpad", "cmd", "powershell", "explorer"] else "📱"
+            item = QListWidgetItem(f"{icon} {app_name}")
+            item.setData(Qt.ItemDataRole.UserRole, (app_name, app_path))
+            item.setToolTip(app_path)  # Show path on hover
+            app_list.addItem(item)
+        
+        # Search functionality
+        def filter_apps():
+            search_text = search_box.text().lower()
+            visible_count = 0
+            for i in range(app_list.count()):
+                item = app_list.item(i)
+                is_visible = search_text in item.text().lower()
+                item.setHidden(not is_visible)
+                if is_visible:
+                    visible_count += 1
+            info_label.setText(f"📱 {visible_count} de {len(apps)} apps")
+        
+        search_box.textChanged.connect(filter_apps)
+        layout.addWidget(app_list)
+        
+        # Buttons
+        button_box = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | 
+            QDialogButtonBox.StandardButton.Cancel
+        )
+        button_box.accepted.connect(dialog.accept)
+        button_box.rejected.connect(dialog.reject)
+        layout.addWidget(button_box)
+        
+        # Auto-focus search box
+        search_box.setFocus()
+        
+        # Show dialog
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            current = app_list.currentItem()
+            if current:
+                app_name, app_path = current.data(Qt.ItemDataRole.UserRole)
+                self.name_edit.setText(app_name)
+                self.path_edit.setText(app_path)
+    
+    def _find_installed_apps(self) -> list[tuple[str, str]]:
+        """Find installed Windows applications (optimized)."""
+        apps = []
+        max_apps = 200  # Limit to prevent slowdown
+        
+        # Add common Windows apps first (instant)
+        common_apps = [
+            ("Calculadora", "calc"),
+            ("Bloco de Notas", "notepad"),
+            ("Paint", "mspaint"),
+            ("WordPad", "wordpad"),
+            ("Prompt de Comando", "cmd"),
+            ("PowerShell", "powershell"),
+            ("Explorador de Arquivos", "explorer"),
+            ("Ferramenta de Captura", "snippingtool"),
+        ]
+        apps.extend(common_apps)
+        
+        # Quick scan of common app locations
+        quick_paths = [
+            (os.environ.get("LOCALAPPDATA", ""), "Programs"),
+            (os.environ.get("PROGRAMFILES", ""), ""),
+        ]
+        
+        import glob
+        scanned = 0
+        
+        for base, subdir in quick_paths:
+            if scanned >= max_apps:
+                break
+                
+            search_base = os.path.join(base, subdir) if subdir else base
+            if not os.path.exists(search_base):
+                continue
+            
+            # Only scan top-level directories and one level deep
+            try:
+                for item in os.listdir(search_base):
+                    if scanned >= max_apps:
+                        break
+                    
+                    item_path = os.path.join(search_base, item)
+                    if not os.path.isdir(item_path):
+                        continue
+                    
+                    # Look for .exe in this folder only
+                    for exe_file in glob.glob(os.path.join(item_path, "*.exe")):
+                        if scanned >= max_apps:
+                            break
+                        
+                        try:
+                            exe_name = os.path.basename(exe_file)
+                            exe_lower = exe_name.lower()
+                            
+                            # Skip unwanted files
+                            if any(skip in exe_lower for skip in [
+                                'unins', 'update', 'install', 'setup', 
+                                'crash', 'helper', 'service', 'launcher'
+                            ]):
+                                continue
+                            
+                            # Get clean app name
+                            app_name = os.path.splitext(exe_name)[0]
+                            app_name = app_name.replace('_', ' ').replace('-', ' ').title()
+                            
+                            # Avoid duplicates
+                            if not any(app_name == name for name, _ in apps):
+                                apps.append((app_name, exe_file))
+                                scanned += 1
+                        except:
+                            continue
+            except:
+                continue
+        
+        return apps
     
     def _load_data(self) -> None:
         """Load existing app data into fields."""
