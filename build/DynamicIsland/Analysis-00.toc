@@ -293,9 +293,9 @@
   ('multiprocessing',
    'C:\\Python313\\Lib\\multiprocessing\\__init__.py',
    'PYMODULE'),
+  ('tracemalloc', 'C:\\Python313\\Lib\\tracemalloc.py', 'PYMODULE'),
   ('_colorize', 'C:\\Python313\\Lib\\_colorize.py', 'PYMODULE'),
   ('_py_abc', 'C:\\Python313\\Lib\\_py_abc.py', 'PYMODULE'),
-  ('tracemalloc', 'C:\\Python313\\Lib\\tracemalloc.py', 'PYMODULE'),
   ('stringprep', 'C:\\Python313\\Lib\\stringprep.py', 'PYMODULE'),
   ('random', 'C:\\Python313\\Lib\\random.py', 'PYMODULE'),
   ('statistics', 'C:\\Python313\\Lib\\statistics.py', 'PYMODULE'),
@@ -658,6 +658,26 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\opengl32sw.dll',
    'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qicns.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qicns.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qtiff.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qtiff.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\iconengines\\qsvgicon.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\iconengines\\qsvgicon.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qwebp.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qwebp.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\platforms\\qwindows.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qwindows.dll',
+   'BINARY'),
   ('PyQt6\\Qt6\\plugins\\imageformats\\qsvg.dll',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qsvg.dll',
@@ -666,57 +686,37 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qgif.dll',
    'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\imageformats\\qwebp.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qwebp.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\imageformats\\qjpeg.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qjpeg.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\platforms\\qwindows.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qwindows.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\iconengines\\qsvgicon.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\iconengines\\qsvgicon.dll',
-   'BINARY'),
   ('PyQt6\\Qt6\\plugins\\imageformats\\qtga.dll',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qtga.dll',
    'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\generic\\qtuiotouchplugin.dll',
+  ('PyQt6\\Qt6\\plugins\\platforms\\qoffscreen.dll',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\generic\\qtuiotouchplugin.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\imageformats\\qtiff.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qtiff.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\imageformats\\qicns.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qicns.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\platforms\\qminimal.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qminimal.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\imageformats\\qpdf.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qpdf.dll',
-   'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\imageformats\\qwbmp.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qwbmp.dll',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qoffscreen.dll',
    'BINARY'),
   ('PyQt6\\Qt6\\plugins\\imageformats\\qico.dll',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qico.dll',
    'BINARY'),
-  ('PyQt6\\Qt6\\plugins\\platforms\\qoffscreen.dll',
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qwbmp.dll',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qoffscreen.dll',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qwbmp.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qjpeg.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qjpeg.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qpdf.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qpdf.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\platforms\\qminimal.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qminimal.dll',
    'BINARY'),
   ('select.pyd', 'C:\\Python313\\DLLs\\select.pyd', 'EXTENSION'),
   ('_socket.pyd', 'C:\\Python313\\DLLs\\_socket.pyd', 'EXTENSION'),
@@ -774,14 +774,11 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\QtCore.pyd',
    'EXTENSION'),
-  ('api-ms-win-crt-convert-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-filesystem-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-crt-math-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-conio-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
@@ -789,15 +786,9 @@
   ('api-ms-win-crt-stdio-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-time-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-time-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-string-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-string-l1-1-0.dll',
-   'BINARY'),
-  ('VCRUNTIME140.dll', 'C:\\Python313\\VCRUNTIME140.dll', 'BINARY'),
-  ('api-ms-win-crt-runtime-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Java\\jdk-19\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-locale-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
@@ -805,12 +796,25 @@
   ('api-ms-win-crt-process-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-process-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-heap-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-environment-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Java\\jdk-19\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+  ('VCRUNTIME140.dll', 'C:\\Python313\\VCRUNTIME140.dll', 'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\Qt6Gui.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Gui.dll',
    'BINARY'),
   ('PyQt6\\Qt6\\bin\\Qt6Core.dll',
    'C:\\Users\\Domingos '
@@ -824,16 +828,12 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Widgets.dll',
    'BINARY'),
-  ('PyQt6\\Qt6\\bin\\Qt6Gui.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Gui.dll',
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
    'BINARY'),
   ('PyQt6\\Qt6\\bin\\Qt6Svg.dll',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Svg.dll',
-   'BINARY'),
-  ('api-ms-win-crt-utility-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
    'BINARY'),
   ('VCRUNTIME140_1.dll', 'C:\\Python313\\VCRUNTIME140_1.dll', 'BINARY'),
   ('PyQt6\\Qt6\\bin\\Qt6Network.dll',
@@ -844,14 +844,21 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Pdf.dll',
    'BINARY'),
-  ('libcrypto-3.dll', 'C:\\Python313\\DLLs\\libcrypto-3.dll', 'BINARY'),
   ('libssl-3.dll', 'C:\\Python313\\DLLs\\libssl-3.dll', 'BINARY'),
+  ('libcrypto-3.dll', 'C:\\Python313\\DLLs\\libcrypto-3.dll', 'BINARY'),
   ('libffi-8.dll', 'C:\\Python313\\DLLs\\libffi-8.dll', 'BINARY'),
   ('pywin32_system32\\pywintypes313.dll',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pywin32_system32\\pywintypes313.dll',
    'BINARY'),
   ('sqlite3.dll', 'C:\\Python313\\DLLs\\sqlite3.dll', 'BINARY'),
+  ('winrt\\MSVCP140.dll',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\winrt\\MSVCP140.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
   ('api-ms-win-core-errorhandling-l1-1-0.dll',
    'C:\\Program '
    'Files\\Java\\jdk-19\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
@@ -860,25 +867,18 @@
    'C:\\Program '
    'Files\\Java\\jdk-19\\bin\\api-ms-win-core-localization-l1-2-0.dll',
    'BINARY'),
-  ('api-ms-win-core-heap-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-heap-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-core-handle-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-handle-l1-1-0.dll',
-   'BINARY'),
-  ('winrt\\MSVCP140.dll',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\winrt\\MSVCP140.dll',
-   'BINARY'),
-  ('api-ms-win-core-synch-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-synch-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-string-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-string-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-interlocked-l1-1-0.dll',
    'C:\\Program '
    'Files\\Java\\jdk-19\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-heap-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-timezone-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
@@ -890,9 +890,6 @@
    'BINARY'),
   ('ucrtbase.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\ucrtbase.dll',
-   'BINARY'),
-  ('api-ms-win-core-synch-l1-2-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-synch-l1-2-0.dll',
    'BINARY'),
   ('PyQt6\\Qt6\\bin\\VCRUNTIME140_1.dll',
    'C:\\Users\\Domingos '
@@ -906,260 +903,183 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\bin\\VCRUNTIME140.dll',
    'BINARY'),
-  ('api-ms-win-core-util-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-util-l1-1-0.dll',
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-synch-l1-2-0.dll',
    'BINARY'),
-  ('api-ms-win-core-processenvironment-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Java\\jdk-19\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-processthreads-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Java\\jdk-19\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Java\\jdk-19\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-file-l1-2-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-file-l1-2-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-debug-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-debug-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-profile-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-profile-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-sysinfo-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-memory-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-file-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-libraryloader-l1-1-0.dll',
    'C:\\Program '
    'Files\\Java\\jdk-19\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-file-l2-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-file-l2-1-0.dll',
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Java\\jdk-19\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-datetime-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-namedpipe-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Java\\jdk-19\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-console-l1-1-0.dll',
    'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-console-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-file-l1-1-0.dll',
-   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-file-l1-1-0.dll',
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Java\\jdk-19\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-profile-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-processthreads-l1-1-1.dll',
    'C:\\Program '
    'Files\\Java\\jdk-19\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Program Files\\Java\\jdk-19\\bin\\api-ms-win-core-util-l1-1-0.dll',
    'BINARY')],
  [],
  [],
- [('PyQt6\\Qt6\\translations\\qt_lv.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_lv.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_nn.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_nn.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_he.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_he.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_ca.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ca.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_pl.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_pl.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_ka.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ka.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_cs.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_cs.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_pt_BR.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_pt_BR.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_es.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_es.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_ca.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ca.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_sv.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_sv.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_ru.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ru.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_sv.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_sv.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_fi.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_fi.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_ar.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ar.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_bg.qm',
+ [('PyQt6\\Qt6\\translations\\qt_bg.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_bg.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_tr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_tr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_de.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_de.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_sk.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_sk.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_fa.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fa.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_tr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_tr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_it.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_it.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_fa.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_fa.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_nl.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_nl.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_it.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_it.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_de.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_de.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_es.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_es.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_uk.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_uk.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_sl.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_sl.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_fr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_fr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_nn.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_nn.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qtbase_gd.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_gd.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_zh_TW.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_tr.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_zh_TW.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_tr.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_ja.qm',
+  ('PyQt6\\Qt6\\translations\\qt_fi.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ja.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_zh_TW.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_zh_TW.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_cs.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_cs.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_ko.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ko.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_zh_CN.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_zh_CN.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_fi.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qt_help_zh_TW.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_zh_TW.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_es.qm',
+  ('PyQt6\\Qt6\\translations\\qt_fr.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_es.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_fr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_ko.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ko.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qt_help_da.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_da.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_lg.qm',
+  ('PyQt6\\Qt6\\translations\\qtbase_es.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_lg.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_es.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_ru.qm',
+  ('PyQt6\\Qt6\\translations\\qt_uk.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ru.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_uk.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_zh_CN.qm',
+  ('PyQt6\\Qt6\\translations\\qt_en.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_zh_CN.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_en.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_sl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_sl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_da.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_da.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_cs.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_cs.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_hu.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_hu.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_ru.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ru.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qt_help_sk.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_sk.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_nl.qm',
+  ('PyQt6\\Qt6\\translations\\qtbase_fa.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_nl.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fa.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_zh_CN.qm',
+  ('PyQt6\\Qt6\\translations\\qt_lg.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_zh_CN.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_lg.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_it.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_de.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_it.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_de.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_fi.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_nl.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fi.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_nl.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_lg.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_ca.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_lg.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ca.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_ar.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ar.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_tr.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_tr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_en.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_en.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_hu.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_hu.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_ru.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ru.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_fr.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_fr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_sk.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_sk.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_ja.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ja.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qtbase_lv.qm',
    'C:\\Users\\Domingos '
@@ -1169,193 +1089,261 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_lt.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_da.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_da.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_sk.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_sk.qm',
-   'DATA'),
   ('PyQt6\\Qt6\\translations\\qt_pt_BR.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_pt_BR.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_ca.qm',
+  ('PyQt6\\Qt6\\translations\\qt_ko.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ca.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ko.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_gl.qm',
+  ('PyQt6\\Qt6\\translations\\qt_tr.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_gl.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_nn.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_nn.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_ko.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ko.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_ar.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ar.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_fr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_bg.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_bg.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_nl.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_nl.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_tr.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qtbase_pl.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_pl.qm',
    'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_nl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_nl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_nn.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_nn.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_zh_CN.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_zh_CN.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_bg.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_bg.qm',
+   'DATA'),
   ('PyQt6\\Qt6\\translations\\qt_help_ka.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ka.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_pt_BR.qm',
+  ('PyQt6\\Qt6\\translations\\qt_cs.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_pt_BR.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_cs.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_en.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_it.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_en.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_it.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_en.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_es.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_en.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_en.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_en.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_hr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_hr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_da.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_da.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_ar.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ar.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_hu.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_hu.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_hu.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_hu.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_hr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_hr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_pt_PT.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_pt_PT.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_gl.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_gl.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_gd.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_gd.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_tr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_tr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_ko.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ko.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_bg.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_bg.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_hu.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_hu.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_ru.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ru.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_cs.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_cs.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_hr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_hr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_ka.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ka.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_fr.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_fr.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_ja.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ja.qm',
-   'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_pl.qm',
-   'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_pl.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_es.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qtbase_he.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_he.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_uk.qm',
+  ('PyQt6\\Qt6\\translations\\qt_gd.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_uk.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_gd.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_ja.qm',
+  ('PyQt6\\Qt6\\translations\\qtbase_ko.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ja.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ko.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qtbase_sv.qm',
+  ('PyQt6\\Qt6\\translations\\qt_help_nn.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_sv.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_nn.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_help_sl.qm',
+  ('PyQt6\\Qt6\\translations\\qtbase_lg.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_sl.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_lg.qm',
    'DATA'),
-  ('PyQt6\\Qt6\\translations\\qt_de.qm',
+  ('PyQt6\\Qt6\\translations\\qt_pt_PT.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_de.qm',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_pt_PT.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_zh_CN.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_zh_CN.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_lv.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_lv.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ar.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ar.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_nl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_nl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_it.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_it.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_zh_TW.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_zh_TW.qm',
    'DATA'),
   ('PyQt6\\Qt6\\translations\\qt_help_uk.qm',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_uk.qm',
    'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\LICENSE.md',
+  ('PyQt6\\Qt6\\translations\\qt_nn.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_nn.qm',
    'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\top_level.txt',
+  ('PyQt6\\Qt6\\translations\\qtbase_bg.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_bg.qm',
    'DATA'),
-  ('pyreadline3-3.5.4.dist-info\\RECORD',
+  ('PyQt6\\Qt6\\translations\\qtbase_sk.qm',
    'C:\\Users\\Domingos '
-   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\RECORD',
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_sk.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_zh_TW.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_zh_TW.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_de.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_de.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_cs.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_cs.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_fi.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fi.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_pt_BR.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_pt_BR.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_pt_BR.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_pt_BR.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_hr.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_hr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ru.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ru.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_sv.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_sv.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_de.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_de.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_hr.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_hr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_it.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_it.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_he.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_he.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_ca.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ca.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_ja.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_ja.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_sv.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_sv.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_en.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_en.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_fr.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_pl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_pl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ja.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ja.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ca.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ca.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_sv.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_sv.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_ar.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ar.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_ka.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_ka.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_zh_CN.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_zh_CN.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_sl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_sl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_gl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_gl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_uk.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_uk.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_hu.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_hu.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_es.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_es.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_fa.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_fa.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_help_pl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_help_pl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_da.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_da.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_hr.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_hr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ka.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ka.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qt_gl.qm',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyQt6\\Qt6\\translations\\qt_gl.qm',
    'DATA'),
   ('pyreadline3-3.5.4.dist-info\\WHEEL',
    'C:\\Users\\Domingos '
@@ -1365,35 +1353,52 @@
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\METADATA',
    'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\top_level.txt',
+   'DATA'),
   ('pyreadline3-3.5.4.dist-info\\INSTALLER',
    'C:\\Users\\Domingos '
    'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\INSTALLER',
    'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\RECORD',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\RECORD',
+   'DATA'),
+  ('pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'C:\\Users\\Domingos '
+   'Daniel\\AppData\\Roaming\\Python\\Python313\\site-packages\\pyreadline3-3.5.4.dist-info\\LICENSE.md',
+   'DATA'),
   ('base_library.zip',
    'C:\\Projectos\\dinamic-island\\build\\DynamicIsland\\base_library.zip',
    'DATA')],
- [('genericpath', 'C:\\Python313\\Lib\\genericpath.py', 'PYMODULE'),
-  ('traceback', 'C:\\Python313\\Lib\\traceback.py', 'PYMODULE'),
-  ('reprlib', 'C:\\Python313\\Lib\\reprlib.py', 'PYMODULE'),
-  ('types', 'C:\\Python313\\Lib\\types.py', 'PYMODULE'),
-  ('stat', 'C:\\Python313\\Lib\\stat.py', 'PYMODULE'),
-  ('io', 'C:\\Python313\\Lib\\io.py', 'PYMODULE'),
-  ('copyreg', 'C:\\Python313\\Lib\\copyreg.py', 'PYMODULE'),
-  ('abc', 'C:\\Python313\\Lib\\abc.py', 'PYMODULE'),
-  ('keyword', 'C:\\Python313\\Lib\\keyword.py', 'PYMODULE'),
-  ('functools', 'C:\\Python313\\Lib\\functools.py', 'PYMODULE'),
-  ('_weakrefset', 'C:\\Python313\\Lib\\_weakrefset.py', 'PYMODULE'),
-  ('enum', 'C:\\Python313\\Lib\\enum.py', 'PYMODULE'),
-  ('linecache', 'C:\\Python313\\Lib\\linecache.py', 'PYMODULE'),
-  ('sre_constants', 'C:\\Python313\\Lib\\sre_constants.py', 'PYMODULE'),
-  ('operator', 'C:\\Python313\\Lib\\operator.py', 'PYMODULE'),
-  ('posixpath', 'C:\\Python313\\Lib\\posixpath.py', 'PYMODULE'),
-  ('ntpath', 'C:\\Python313\\Lib\\ntpath.py', 'PYMODULE'),
-  ('weakref', 'C:\\Python313\\Lib\\weakref.py', 'PYMODULE'),
-  ('collections', 'C:\\Python313\\Lib\\collections\\__init__.py', 'PYMODULE'),
-  ('codecs', 'C:\\Python313\\Lib\\codecs.py', 'PYMODULE'),
+ [('heapq', 'C:\\Python313\\Lib\\heapq.py', 'PYMODULE'),
   ('warnings', 'C:\\Python313\\Lib\\warnings.py', 'PYMODULE'),
+  ('reprlib', 'C:\\Python313\\Lib\\reprlib.py', 'PYMODULE'),
+  ('_collections_abc', 'C:\\Python313\\Lib\\_collections_abc.py', 'PYMODULE'),
+  ('operator', 'C:\\Python313\\Lib\\operator.py', 'PYMODULE'),
+  ('io', 'C:\\Python313\\Lib\\io.py', 'PYMODULE'),
+  ('enum', 'C:\\Python313\\Lib\\enum.py', 'PYMODULE'),
+  ('posixpath', 'C:\\Python313\\Lib\\posixpath.py', 'PYMODULE'),
+  ('traceback', 'C:\\Python313\\Lib\\traceback.py', 'PYMODULE'),
+  ('linecache', 'C:\\Python313\\Lib\\linecache.py', 'PYMODULE'),
+  ('collections', 'C:\\Python313\\Lib\\collections\\__init__.py', 'PYMODULE'),
   ('sre_parse', 'C:\\Python313\\Lib\\sre_parse.py', 'PYMODULE'),
+  ('keyword', 'C:\\Python313\\Lib\\keyword.py', 'PYMODULE'),
+  ('codecs', 'C:\\Python313\\Lib\\codecs.py', 'PYMODULE'),
+  ('re._parser', 'C:\\Python313\\Lib\\re\\_parser.py', 'PYMODULE'),
+  ('re._constants', 'C:\\Python313\\Lib\\re\\_constants.py', 'PYMODULE'),
+  ('re._compiler', 'C:\\Python313\\Lib\\re\\_compiler.py', 'PYMODULE'),
+  ('re._casefix', 'C:\\Python313\\Lib\\re\\_casefix.py', 'PYMODULE'),
+  ('functools', 'C:\\Python313\\Lib\\functools.py', 'PYMODULE'),
+  ('genericpath', 'C:\\Python313\\Lib\\genericpath.py', 'PYMODULE'),
+  ('sre_compile', 'C:\\Python313\\Lib\\sre_compile.py', 'PYMODULE'),
+  ('copyreg', 'C:\\Python313\\Lib\\copyreg.py', 'PYMODULE'),
+  ('sre_constants', 'C:\\Python313\\Lib\\sre_constants.py', 'PYMODULE'),
+  ('types', 'C:\\Python313\\Lib\\types.py', 'PYMODULE'),
+  ('ntpath', 'C:\\Python313\\Lib\\ntpath.py', 'PYMODULE'),
+  ('abc', 'C:\\Python313\\Lib\\abc.py', 'PYMODULE'),
+  ('_weakrefset', 'C:\\Python313\\Lib\\_weakrefset.py', 'PYMODULE'),
   ('encodings.zlib_codec',
    'C:\\Python313\\Lib\\encodings\\zlib_codec.py',
    'PYMODULE'),
@@ -1636,13 +1641,8 @@
    'C:\\Python313\\Lib\\encodings\\aliases.py',
    'PYMODULE'),
   ('encodings', 'C:\\Python313\\Lib\\encodings\\__init__.py', 'PYMODULE'),
+  ('stat', 'C:\\Python313\\Lib\\stat.py', 'PYMODULE'),
   ('locale', 'C:\\Python313\\Lib\\locale.py', 'PYMODULE'),
-  ('_collections_abc', 'C:\\Python313\\Lib\\_collections_abc.py', 'PYMODULE'),
-  ('sre_compile', 'C:\\Python313\\Lib\\sre_compile.py', 'PYMODULE'),
-  ('re._parser', 'C:\\Python313\\Lib\\re\\_parser.py', 'PYMODULE'),
-  ('re._constants', 'C:\\Python313\\Lib\\re\\_constants.py', 'PYMODULE'),
-  ('re._compiler', 'C:\\Python313\\Lib\\re\\_compiler.py', 'PYMODULE'),
-  ('re._casefix', 'C:\\Python313\\Lib\\re\\_casefix.py', 'PYMODULE'),
-  ('heapq', 'C:\\Python313\\Lib\\heapq.py', 'PYMODULE'),
+  ('weakref', 'C:\\Python313\\Lib\\weakref.py', 'PYMODULE'),
   ('re', 'C:\\Python313\\Lib\\re\\__init__.py', 'PYMODULE'),
   ('os', 'C:\\Python313\\Lib\\os.py', 'PYMODULE')])

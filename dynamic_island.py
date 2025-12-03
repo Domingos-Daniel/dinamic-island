@@ -73,6 +73,7 @@ from PyQt6.QtWidgets import (
     QLineEdit,
     QListWidget,
     QListWidgetItem,
+    QMenu,
     QMessageBox,
     QPushButton,
     QScrollArea,
@@ -206,6 +207,20 @@ ICON_PIN = """
 ICON_PIN_ACTIVE = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="#4CAF50"/>
+</svg>
+"""
+
+ICON_DND = """
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="10" fill="#888888"/>
+  <rect x="7" y="11" width="10" height="2" fill="#1a1a1a"/>
+</svg>
+"""
+
+ICON_DND_ACTIVE = """
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="10" fill="#E53935"/>
+  <rect x="7" y="11" width="10" height="2" fill="#FFFFFF"/>
 </svg>
 """
 
@@ -1070,6 +1085,7 @@ class DynamicIslandWindow(QWidget):
         self._shadow_intensity = 0.0  # For shadow animation
         self._border_glow = 0.0  # For border glow effect
         self._is_pinned = False  # Pin state - keeps island expanded
+        self._is_dnd = False  # Do Not Disturb mode - blocks notifications
         
         # Pulse animation timer for collapsed indicator
         self._pulse_timer = QTimer(self)
@@ -1195,8 +1211,8 @@ class DynamicIslandWindow(QWidget):
         # Count enabled apps
         app_count = sum(1 for app in self.config.get("apps", []) if app.get("enabled", True))
         
-        # Fixed buttons: notification history, pin, settings, close = 4
-        fixed_buttons = 4
+        # Fixed buttons: menu, close = 2
+        fixed_buttons = 2
         
         # Total buttons
         total_buttons = app_count + fixed_buttons
@@ -1264,20 +1280,10 @@ class DynamicIslandWindow(QWidget):
             btn = GlowButton(svg, tip, action, color)
             btn_layout.addWidget(btn)
         
-        # Add notification history button
-        notif_btn = GlowButton(ICON_BELL, "Histórico de Notificações (Ctrl+4)", self._show_notification_history, "#FFD700")
-        notif_btn.setFixedSize(40, 40)
-        btn_layout.addWidget(notif_btn)
-        
-        # Add pin button
-        self._pin_btn = GlowButton(ICON_PIN, "Fixar (manter aberto)", self._toggle_pin, "#888888")
-        self._pin_btn.setFixedSize(40, 40)
-        btn_layout.addWidget(self._pin_btn)
-        
-        # Add settings button
-        settings_btn = GlowButton(ICON_SETTINGS, "Configurações", self._open_settings, "#888888")
-        settings_btn.setFixedSize(40, 40)
-        btn_layout.addWidget(settings_btn)
+        # Add settings menu button (contains all options)
+        self._menu_btn = GlowButton(ICON_SETTINGS, "Menu", self._show_settings_menu, "#888888")
+        self._menu_btn.setFixedSize(40, 40)
+        btn_layout.addWidget(self._menu_btn)
         
         # Add close button at the end
         close_btn = GlowButton(ICON_CLOSE, "Fechar Dynamic Island", self._close_app, "#FF4444")
@@ -1688,16 +1694,65 @@ class DynamicIslandWindow(QWidget):
         """Toggle pin state - keeps island expanded when pinned."""
         self._is_pinned = not self._is_pinned
         
-        if hasattr(self, '_pin_btn'):
-            if self._is_pinned:
-                self._pin_btn.setIcon(ICON_PIN_ACTIVE)
-                self._pin_btn.setToolTip("Desafixar (permitir minimizar)")
-                # Stop any pending collapse
-                self._collapse_timer.stop()
-            else:
-                self._pin_btn.setIcon(ICON_PIN)
-                self._pin_btn.setToolTip("Fixar (manter aberto)")
+        if self._is_pinned:
+            # Stop any pending collapse
+            self._collapse_timer.stop()
     
+    def _toggle_dnd(self) -> None:
+        """Toggle Do Not Disturb mode - blocks notifications when active."""
+        self._is_dnd = not self._is_dnd
+    
+    def _show_settings_menu(self) -> None:
+        """Show settings popup menu."""
+        menu = QMenu(self)
+        menu.setStyleSheet("""
+            QMenu {
+                background-color: rgba(30, 30, 30, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 8px;
+            }
+            QMenu::item {
+                color: #FFFFFF;
+                padding: 10px 20px;
+                border-radius: 8px;
+                margin: 2px 4px;
+            }
+            QMenu::item:selected {
+                background-color: rgba(255, 255, 255, 0.15);
+            }
+            QMenu::separator {
+                height: 1px;
+                background: rgba(255, 255, 255, 0.1);
+                margin: 6px 10px;
+            }
+        """)
+        
+        # Notification history action
+        notif_action = menu.addAction("🔔 Histórico de Notificações")
+        notif_action.triggered.connect(self._show_notification_history)
+        
+        # Pin action
+        pin_text = "📌 Desafixar" if self._is_pinned else "📌 Fixar (manter aberto)"
+        pin_action = menu.addAction(pin_text)
+        pin_action.triggered.connect(self._toggle_pin)
+        
+        # DND action
+        dnd_text = "🔕 Desativar Não Incomodar" if self._is_dnd else "🔕 Não Incomodar"
+        dnd_action = menu.addAction(dnd_text)
+        dnd_action.triggered.connect(self._toggle_dnd)
+        
+        menu.addSeparator()
+        
+        # Settings action
+        settings_action = menu.addAction("⚙️ Configurações")
+        settings_action.triggered.connect(self._open_settings)
+        
+        # Show menu below the button
+        if hasattr(self, '_menu_btn'):
+            btn_pos = self._menu_btn.mapToGlobal(QPoint(0, self._menu_btn.height()))
+            menu.exec(btn_pos)
+
     def _toggle_music_player(self) -> None:
         """Toggle music player controls visibility."""
         self._music_player_visible = not self._music_player_visible
@@ -2148,6 +2203,10 @@ class DynamicIslandWindow(QWidget):
     
     def _show_notification(self, text: str, app_name: str = "") -> None:
         """Show notification in the Dynamic Island."""
+        
+        # Check Do Not Disturb mode - skip notification if active
+        if self._is_dnd:
+            return
         
         if not hasattr(self, '_notification_label') or self._notification_label is None:
             return
