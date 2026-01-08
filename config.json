@@ -46,5 +46,49 @@
   "music_controls_enabled": true,
   "auto_collapse_delay": 3000,
   "expanded_width": 650,
-  "collapsed_width": 50
+  "collapsed_width": 50,
+  "ui_theme": {
+    "description": "Modern Glassmorphism Theme (Fluent Design inspired)",
+    "palette": {
+      "neutral": {
+        "black": "#000000",
+        "darkGray": "#1A1A1A",
+        "mediumGray": "#2D2D30",
+        "lightGray": "#CCCCCC",
+        "white": "#FFFFFF"
+      },
+      "accents": {
+        "blue": "#0078D4",
+        "brightBlue": "#50E6FF",
+        "green": "#107C10",
+        "brightGreen": "#13A538",
+        "purple": "#8764B8",
+        "pink": "#E81B23",
+        "cyan": "#00B4EF"
+      }
+    },
+    "typography": {
+      "fontFamily": "Segoe UI, -apple-system, BlinkMacSystemFont, SF Pro Display",
+      "sizes": {
+        "small": 11,
+        "medium": 12,
+        "large": 14,
+        "xlarge": 16
+      }
+    },
+    "effects": {
+      "borderRadius": 14,
+      "shadowBlur": 24,
+      "shadowColor": "#00000033",
+      "glassOpacity": 0.8,
+      "accentGlow": true
+    },
+    "animations": {
+      "durationFast": 150,
+      "durationNormal": 300,
+      "durationSlow": 500,
+      "easingDefault": "OutCubic",
+      "easingSmooth": "InOutSine"
+    }
+  }
 }

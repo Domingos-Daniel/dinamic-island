@@ -158,69 +158,70 @@ ICON_MUSIC = """
 
 ICON_PREV = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M6 6h2v12H6V6zm3.5 6l8.5 6V6l-8.5 6z" fill="#E0E0E0"/>
+  <path d="M6 6h2v12H6V6zm3.5 6l8.5 6V6l-8.5 6z" fill="currentColor" opacity="0.9"/>
 </svg>
 """
 
 ICON_PLAY = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8 5v14l11-7z" fill="#E0E0E0"/>
+  <path d="M8 5v14l11-7z" fill="currentColor" opacity="0.95"/>
 </svg>
 """
 
 ICON_PAUSE = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="#E0E0E0"/>
+  <rect x="6" y="4" width="3" height="16" fill="currentColor" opacity="0.95"/>
+  <rect x="13" y="4" width="3" height="16" fill="currentColor" opacity="0.95"/>
 </svg>
 """
 
 ICON_NEXT = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="#E0E0E0"/>
+  <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor" opacity="0.9"/>
 </svg>
 """
 
 ICON_CLOSE = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#FF4444"/>
+  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor" opacity="0.95"/>
 </svg>
 """
 
 ICON_SETTINGS = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="#888888"/>
+  <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="currentColor" opacity="0.85"/>
 </svg>
 """
 
 ICON_BELL = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="#FFD700"/>
+  <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="currentColor" opacity="0.9"/>
 </svg>
 """
 
 ICON_PIN = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="#888888"/>
+  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="currentColor" opacity="0.85"/>
 </svg>
 """
 
 ICON_PIN_ACTIVE = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="#4CAF50"/>
+  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" fill="currentColor" opacity="0.95"/>
 </svg>
 """
 
 ICON_DND = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="10" fill="#888888"/>
-  <rect x="7" y="11" width="10" height="2" fill="#1a1a1a"/>
+  <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.6"/>
+  <rect x="7" y="11" width="10" height="2" fill="white"/>
 </svg>
 """
 
 ICON_DND_ACTIVE = """
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="10" fill="#E53935"/>
-  <rect x="7" y="11" width="10" height="2" fill="#FFFFFF"/>
+  <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.95"/>
+  <rect x="7" y="11" width="10" height="2" fill="white"/>
 </svg>
 """
 
@@ -231,7 +232,15 @@ ICON_DND_ACTIVE = """
 
 
 class GlowButton(QWidget):
-    """A sleek animated button with SVG icon, glow effect and scale animation."""
+    """A sleek animated button with SVG icon, glow effect and scale animation.
+    
+    Features:
+    - Glassmorphic design inspired by Fluent Design System
+    - Smooth spring-like animations with easing curves
+    - Subtle glow and scale effects on hover/press
+    - Rotation tilt on click for tactile feedback
+    - Pulsing animation for active/notification states
+    """
 
     SIZE = 54
     ICON_SIZE = 28
@@ -251,12 +260,14 @@ class GlowButton(QWidget):
         self._scale = 1.0
         self._glow = 0.0
         self._pressed = False
+        self._pulse = 0.0  # Pulsing indicator animation
+        self._is_pulsing = False  # Whether to show pulse animation
 
         self.setFixedSize(self.SIZE, self.SIZE)
         self.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.setToolTip(tooltip)
 
-        # Animations with smoother curves
+        # Smooth animations with better easing curves for natural feel
         self._scale_anim = QPropertyAnimation(self, b"scale")
         self._scale_anim.setDuration(200)
         self._scale_anim.setEasingCurve(QEasingCurve.Type.OutCubic)
@@ -265,11 +276,19 @@ class GlowButton(QWidget):
         self._glow_anim.setDuration(300)
         self._glow_anim.setEasingCurve(QEasingCurve.Type.InOutSine)
         
-        # Rotation animation for extra flair
+        # Rotation animation for tactile feedback
         self._rotation = 0.0
         self._rotation_anim = QPropertyAnimation(self, b"rotation")
         self._rotation_anim.setDuration(150)
         self._rotation_anim.setEasingCurve(QEasingCurve.Type.OutBack)
+        
+        # Pulse animation for notification/active state
+        self._pulse_anim = QPropertyAnimation(self, b"pulse")
+        self._pulse_anim.setDuration(1200)
+        self._pulse_anim.setEasingCurve(QEasingCurve.Type.InOutSine)
+        self._pulse_anim.setStartValue(0.0)
+        self._pulse_anim.setEndValue(1.0)
+        self._pulse_anim.setLoopCount(-1)  # Loop infinitely
 
         self.renderer = QSvgRenderer(self.svg_data.encode())
 
@@ -277,6 +296,16 @@ class GlowButton(QWidget):
         """Update the button's SVG icon."""
         self.svg_data = svg_data
         self.renderer = QSvgRenderer(self.svg_data.encode())
+        self.update()
+    
+    def set_pulsing(self, pulsing: bool) -> None:
+        """Enable/disable pulsing animation (for notification indicators)."""
+        self._is_pulsing = pulsing
+        if pulsing:
+            self._pulse_anim.start()
+        else:
+            self._pulse_anim.stop()
+            self._pulse = 0.0
         self.update()
 
     # ─── Qt properties for animation ──────────────────────────────────────────
@@ -306,45 +335,63 @@ class GlowButton(QWidget):
     def rotation(self, value: float) -> None:
         self._rotation = value
         self.update()
+    
+    @pyqtProperty(float)
+    def pulse(self) -> float:
+        return self._pulse
+
+    @pulse.setter
+    def pulse(self, value: float) -> None:
+        self._pulse = value
+        self.update()
 
     # ─── Events ───────────────────────────────────────────────────────────────
     def enterEvent(self, _event) -> None:
+        """Smooth hover animation - expand and glow."""
         self._animate_scale(1.15)
         self._animate_glow(1.0)
 
     def leaveEvent(self, _event) -> None:
+        """Reset to normal state when mouse leaves."""
         self._animate_scale(1.0)
         self._animate_glow(0.0)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         if event.button() == Qt.MouseButton.LeftButton:
             self._pressed = True
-            self._animate_scale(0.85)  # More dramatic press
-            self._animate_rotation(-5.0)  # Tilt on press
+            # Dramatic press effect for tactile feedback
+            self._animate_scale(0.85)
+            self._animate_rotation(-8.0)  # Tilt left on press
 
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         if self._pressed and event.button() == Qt.MouseButton.LeftButton:
             self._pressed = False
-            # Bounce effect on release
+            # Spring-like bounce effect on release
             self._animate_scale(1.25)  # Overshoot
+            # Return to hover or normal state
             QTimer.singleShot(100, lambda: self._animate_scale(1.18 if self.underMouse() else 1.0))
-            self._animate_rotation(3.0 if self.underMouse() else 0.0)
+            self._animate_rotation(5.0 if self.underMouse() else 0.0)  # Tilt right
+            
             if self.rect().contains(event.pos()):
+                # Trigger callback with press feedback
                 self.callback()
 
     def _animate_scale(self, target: float) -> None:
+        """Animate scale to target value with smooth easing."""
         self._scale_anim.stop()
         self._scale_anim.setStartValue(self._scale)
         self._scale_anim.setEndValue(target)
         self._scale_anim.start()
 
     def _animate_glow(self, target: float) -> None:
+        """Animate glow to target value."""
         self._glow_anim.stop()
         self._glow_anim.setStartValue(self._glow)
         self._glow_anim.setEndValue(target)
         self._glow_anim.start()
     
     def _animate_rotation(self, target: float) -> None:
+        """Animate rotation to target angle."""
         self._rotation_anim.stop()
         self._rotation_anim.setStartValue(self._rotation)
         self._rotation_anim.setEndValue(target)
@@ -358,45 +405,72 @@ class GlowButton(QWidget):
         center = QPointF(self.width() / 2, self.height() / 2)
         radius = (self.SIZE / 2 - 4) * self._scale
         
-        # Apply rotation transform
+        # Apply rotation transform for press feedback
         painter.translate(center)
         painter.rotate(self._rotation)
         painter.translate(-center)
 
-        # Outer glow (larger, more diffuse)
+        # ───────────────────────────────────────────────────────────────────────
+        # GLASSMORPHIC BUTTON DESIGN
+        # ───────────────────────────────────────────────────────────────────────
+        
+        # Pulsing notification indicator (rings expanding outward)
+        if self._is_pulsing and self._pulse > 0.01:
+            pulse_rings = 2
+            for ring in range(pulse_rings):
+                # Each ring pulses at a slightly different phase
+                ring_phase = (self._pulse + ring * 0.4) % 1.0
+                ring_radius = radius * (1.2 + ring_phase * 0.8)
+                ring_alpha = int(60 * (1.0 - ring_phase))
+                
+                ring_color = QColor(self.accent)
+                ring_color.setAlpha(ring_alpha)
+                
+                painter.setPen(QPen(ring_color, 1.5))
+                painter.setBrush(Qt.BrushStyle.NoBrush)
+                painter.drawEllipse(center, ring_radius, ring_radius)
+        
+        # Outer glow (larger, more diffuse - acrylic depth effect)
         if self._glow > 0.01:
             for i in range(3):
                 glow_color = QColor(self.accent)
-                glow_color.setAlphaF(0.15 * self._glow * (1 - i * 0.3))
-                glow_radius = radius * (1.8 + i * 0.3)
+                # Progressive transparency for smooth falloff
+                glow_alpha = int(0.2 * self._glow * (1 - i * 0.35))
+                glow_color.setAlphaF(glow_alpha)
+                
+                glow_radius = radius * (1.9 + i * 0.4)
                 gradient = QRadialGradient(center, glow_radius)
                 gradient.setColorAt(0, glow_color)
-                gradient.setColorAt(0.5, QColor(self.accent.red(), self.accent.green(), self.accent.blue(), int(30 * self._glow)))
+                gradient.setColorAt(0.4, QColor(self.accent.red(), self.accent.green(), self.accent.blue(), int(25 * self._glow)))
                 gradient.setColorAt(1, QColor(0, 0, 0, 0))
+                
                 painter.setBrush(gradient)
                 painter.setPen(Qt.PenStyle.NoPen)
                 painter.drawEllipse(center, glow_radius, glow_radius)
 
-        # Background circle with gradient
-        bg_gradient = QRadialGradient(center.x(), center.y() - radius * 0.3, radius * 1.5)
+        # Background circle with subtle gradient (glass appearance)
+        bg_gradient = QRadialGradient(center.x(), center.y() - radius * 0.3, radius * 1.6)
+        
+        # Dynamic color based on glow state
         if self._glow < 0.5:
-            bg_gradient.setColorAt(0, QColor(55, 55, 58))
-            bg_gradient.setColorAt(1, QColor(35, 35, 38))
+            bg_gradient.setColorAt(0, QColor(70, 70, 75, 240))
+            bg_gradient.setColorAt(1, QColor(45, 45, 50, 235))
         else:
-            bg_gradient.setColorAt(0, QColor(70, 70, 75))
-            bg_gradient.setColorAt(1, QColor(45, 45, 48))
+            bg_gradient.setColorAt(0, QColor(85, 85, 92, 245))
+            bg_gradient.setColorAt(1, QColor(55, 55, 62, 240))
         
         painter.setBrush(bg_gradient)
-        painter.setPen(QPen(QColor(90, 90, 95, int(150 + 105 * self._glow)), 1.5))
+        border_alpha = int(160 + 95 * self._glow)
+        painter.setPen(QPen(QColor(110, 110, 115, border_alpha), 1.5))
         painter.drawEllipse(center, radius, radius)
         
-        # Inner highlight (top)
+        # Inner highlight (top) - glass light reflection
         highlight = QLinearGradient(center.x(), center.y() - radius, center.x(), center.y())
-        highlight.setColorAt(0, QColor(255, 255, 255, int(25 + 20 * self._glow)))
+        highlight.setColorAt(0, QColor(255, 255, 255, int(35 + 25 * self._glow)))
         highlight.setColorAt(1, QColor(255, 255, 255, 0))
         painter.setBrush(highlight)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.drawEllipse(center, radius * 0.9, radius * 0.9)
+        painter.drawEllipse(center, radius * 0.85, radius * 0.85)
 
         # Icon
         icon_size = self.ICON_SIZE * self._scale
@@ -1125,6 +1199,12 @@ class DynamicIslandWindow(QWidget):
         self._collapse_timer.setSingleShot(True)
         self._collapse_timer.timeout.connect(self.collapse)
         
+        # Music detection timer - check every 500ms if music is playing
+        self._music_check_timer = QTimer(self)
+        self._music_check_timer.setInterval(500)
+        self._music_check_timer.timeout.connect(self._check_music_playing)
+        self._music_check_timer.start()
+        
         # Notification system - initialize BEFORE _build_ui
         self._notification_label = None  # Will be created in _build_ui
         self._notification_timer = QTimer(self)
@@ -1427,6 +1507,12 @@ class DynamicIslandWindow(QWidget):
         if hasattr(self, '_button_container'):
             self._button_container.setVisible(True)
         
+        # Auto-show music controls if music is enabled
+        music_enabled = self.config.get("music_controls_enabled", True)
+        if music_enabled and hasattr(self, '_music_controls') and not self._music_player_visible:
+            self._music_player_visible = True
+            self._music_controls.setVisible(True)
+        
         # Calculate dynamic width including music controls if visible
         music_extra = 150 if self._music_player_visible else 0
         expand_width = self._calculate_expanded_width() + music_extra
@@ -1508,19 +1594,25 @@ class DynamicIslandWindow(QWidget):
     
     def focusOutEvent(self, _event) -> None:
         """Collapse when window loses focus (click outside)."""
-        if not self._is_pinned:
+        # Only collapse if not pinned and if we're expanded
+        if not self._is_pinned and self.expanded:
+            # Start the auto-collapse timer
             self._collapse_timer.start()
     
     def event(self, event) -> bool:
-        """Handle activation/deactivation events."""
+        """Handle activation/deactivation events for better focus tracking."""
         from PyQt6.QtCore import QEvent
+        
         if event.type() == QEvent.Type.WindowDeactivate:
-            # Window lost focus - collapse if not pinned
-            if not self._is_pinned:
+            # Window lost focus - collapse if not pinned and expanded
+            if not self._is_pinned and self.expanded:
                 self._collapse_timer.start()
+        
         elif event.type() == QEvent.Type.WindowActivate:
-            # Window gained focus - cancel collapse
-            self._collapse_timer.stop()
+            # Window gained focus - cancel any pending collapse
+            if self._collapse_timer.isActive():
+                self._collapse_timer.stop()
+        
         return super().event(event)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
@@ -1558,90 +1650,106 @@ class DynamicIslandWindow(QWidget):
         rect = self.rect()
         radius = self._corner_radius
 
-        # Background color with subtle lightness shift
-        base = int(8 + 22 * self._bg_lightness)
-        bg_color = QColor(base, base, base + 2, 250)
-
-        # Enhanced drop shadow (more layers, smoother)
-        shadow_layers = int(5 + 3 * self._shadow_intensity)
+        # ───────────────────────────────────────────────────────────────────────
+        # GLASSMORPHISM EFFECT (Fluent Design - Microsoft inspired)
+        # ───────────────────────────────────────────────────────────────────────
+        
+        # Ultra-soft, diffuse shadow layers (acrylic depth)
+        shadow_layers = int(8 + 4 * self._shadow_intensity)
         for i in range(shadow_layers, 0, -1):
-            shadow_alpha = int((15 + 25 * self._shadow_intensity) * (shadow_layers - i + 1) / shadow_layers)
+            # Smoother falloff for shadow
+            shadow_alpha = int((8 + 18 * self._shadow_intensity) * (1 - (i / shadow_layers) ** 1.8))
             shadow_color = QColor(0, 0, 0, shadow_alpha)
             painter.setPen(Qt.PenStyle.NoPen)
             painter.setBrush(shadow_color)
-            inflate = int(i * (1.5 + self._shadow_intensity))
+            inflate = i * (2.0 + self._shadow_intensity * 1.5)
             painter.drawRoundedRect(
-                rect.adjusted(-inflate, -inflate, inflate, inflate), 
+                QRectF(rect).adjusted(-inflate, -inflate, inflate, inflate), 
                 radius + inflate, 
                 radius + inflate
             )
 
-        # Outer glow when expanded (subtle blue tint)
-        if self._border_glow > 0.01:
-            glow_color = QColor(80, 160, 255, int(30 * self._border_glow))
-            for i in range(3):
-                glow_color.setAlpha(int((20 - i * 6) * self._border_glow))
-                inflate = int((3 + i * 2) * self._border_glow)
-                painter.setBrush(glow_color)
-                painter.drawRoundedRect(
-                    rect.adjusted(-inflate, -inflate, inflate, inflate),
-                    radius + inflate,
-                    radius + inflate
-                )
-
-        # Main pill with gradient
+        # Acryllic/Frosted glass effect - semi-transparent with blur simulation
+        base = int(15 + 20 * self._bg_lightness)
+        bg_color = QColor(base, base, base + 2)
+        
+        # Multiple transparency layers create "frosted glass" appearance
+        # Layer 1: Very dark semi-transparent base (80% transparent)
+        glass_base = QColor(base, base, base + 2, 205)
+        
+        # Layer 2: Subtle noise/texture simulation through gradient
         bg_gradient = QLinearGradient(rect.left(), rect.top(), rect.left(), rect.bottom())
-        bg_gradient.setColorAt(0, QColor(base + 8, base + 8, base + 10, 252))
-        bg_gradient.setColorAt(0.5, bg_color)
-        bg_gradient.setColorAt(1, QColor(base - 2, base - 2, base, 248))
+        bg_gradient.setColorAt(0, QColor(base + 12, base + 12, base + 14, 210))
+        bg_gradient.setColorAt(0.5, QColor(base + 5, base + 5, base + 6, 205))
+        bg_gradient.setColorAt(1, QColor(base - 2, base - 2, base + 1, 200))
         
         painter.setBrush(bg_gradient)
+        
+        # Soft, refined border (less opaque, more elegant)
+        border_strength = 0.4 + 0.6 * self._bg_lightness + 0.5 * self._border_glow
         border_color = QColor(
-            int(60 + 30 * self._border_glow), 
-            int(60 + 40 * self._border_glow), 
-            int(65 + 50 * self._border_glow),
-            int(180 + 75 * self._bg_lightness)
+            int(75 + 35 * self._border_glow), 
+            int(75 + 45 * self._border_glow), 
+            int(85 + 55 * self._border_glow),
+            int(120 * border_strength)
         )
-        painter.setPen(QPen(border_color, 1.0 + 0.5 * self._border_glow))
+        painter.setPen(QPen(border_color, 1.2))
         painter.drawRoundedRect(QRectF(rect), radius, radius)
 
-        # Top highlight line (simulates light reflection) - enhanced
+        # Subtle outer glow (more diffuse, like atmospheric lighting)
+        if self._border_glow > 0.02:
+            # Acrylic accent glow - creates depth and sophistication
+            for glow_layer in range(2, 0, -1):
+                glow_alpha = int((15 - glow_layer * 6) * self._border_glow)
+                if glow_alpha > 0:
+                    glow_color = QColor(100, 170, 255, glow_alpha)
+                    inflate = 4 + glow_layer * 2
+                    painter.setBrush(glow_color)
+                    painter.setPen(Qt.PenStyle.NoPen)
+                    painter.drawRoundedRect(
+                        QRectF(rect).adjusted(-inflate, -inflate, inflate, inflate),
+                        radius + inflate,
+                        radius + inflate
+                    )
+
+        # Top highlight line (creates glass-like reflection effect)
         highlight = QLinearGradient(rect.left(), rect.top(), rect.right(), rect.top())
-        highlight_intensity = int(22 + 18 * self._bg_lightness)
+        highlight_intensity = int(35 + 20 * self._bg_lightness)
         highlight.setColorAt(0, QColor(255, 255, 255, 0))
-        highlight.setColorAt(0.3, QColor(255, 255, 255, highlight_intensity // 2))
+        highlight.setColorAt(0.2, QColor(255, 255, 255, int(highlight_intensity * 0.4)))
         highlight.setColorAt(0.5, QColor(255, 255, 255, highlight_intensity))
-        highlight.setColorAt(0.7, QColor(255, 255, 255, highlight_intensity // 2))
+        highlight.setColorAt(0.8, QColor(255, 255, 255, int(highlight_intensity * 0.4)))
         highlight.setColorAt(1, QColor(255, 255, 255, 0))
-        painter.setPen(QPen(QBrush(highlight), 1.2))
+        painter.setPen(QPen(QBrush(highlight), 1.4))
         painter.drawLine(
             int(rect.left() + radius),
-            rect.top() + 1,
+            int(rect.top() + 1.5),
             int(rect.right() - radius),
-            rect.top() + 1,
+            int(rect.top() + 1.5),
         )
         
-        # Inner edge highlight (bottom)
-        if self._bg_lightness > 0.05:
+        # Bottom subtle inner edge (simulates depth)
+        if self._bg_lightness > 0.08:
             bottom_highlight = QLinearGradient(rect.left(), rect.bottom(), rect.right(), rect.bottom())
+            bottom_intensity = int(6 * self._bg_lightness)
             bottom_highlight.setColorAt(0, QColor(255, 255, 255, 0))
-            bottom_highlight.setColorAt(0.5, QColor(255, 255, 255, int(8 * self._bg_lightness)))
+            bottom_highlight.setColorAt(0.5, QColor(0, 0, 0, int(bottom_intensity)))
             bottom_highlight.setColorAt(1, QColor(255, 255, 255, 0))
-            painter.setPen(QPen(QBrush(bottom_highlight), 0.8))
+            painter.setPen(QPen(QBrush(bottom_highlight), 0.9))
             painter.drawLine(
                 int(rect.left() + radius),
-                rect.bottom() - 1,
+                int(rect.bottom() - 1),
                 int(rect.right() - radius),
-                rect.bottom() - 1,
+                int(rect.bottom() - 1),
             )
         
-        # Draw animated indicator when collapsed (enhanced)
+        # Draw animated indicator when collapsed (enhanced with acrylic aesthetic)
         if not self.expanded and rect.width() <= 100:
             self._draw_collapsed_indicator(painter, rect)
     
     def _draw_collapsed_indicator(self, painter: QPainter, rect: QRect) -> None:
-        """Draw the animated pulsing indicator when collapsed."""
-        # Multi-phase pulse for more organic feel
+        """Draw the animated pulsing indicator when collapsed with glassmorphism."""
+        # Multi-phase pulse for organic, natural feel
         pulse1 = (math.sin(self._pulse_phase) + 1) / 2  # 0 to 1
         pulse2 = (math.sin(self._pulse_phase * 1.5 + 0.5) + 1) / 2
         pulse3 = (math.sin(self._pulse_phase * 0.7 - 0.3) + 1) / 2
@@ -1649,44 +1757,57 @@ class DynamicIslandWindow(QWidget):
         center_x = rect.center().x()
         center_y = rect.center().y()
         
-        # Outer atmospheric glow (very soft)
-        for i in range(3):
-            glow_radius = 8 + i * 4 + pulse1 * 3
-            glow_alpha = int((25 - i * 8) * (0.5 + pulse2 * 0.5))
-            glow_color = QColor(100, 180, 255, glow_alpha)
+        # ───────────────────────────────────────────────────────────────────────
+        # ACRYLIC FROSTED GLASS INDICATOR
+        # ───────────────────────────────────────────────────────────────────────
+        
+        # Outer atmospheric glow (soft, diffuse - very transparent)
+        for i in range(3, 0, -1):
+            glow_radius = 9 + i * 3.5 + pulse1 * 2.5
+            glow_alpha = int((30 - i * 10) * (0.6 + pulse2 * 0.4))
+            glow_color = QColor(120, 200, 255, glow_alpha)
+            
             glow_gradient = QRadialGradient(center_x, center_y, glow_radius)
             glow_gradient.setColorAt(0, glow_color)
-            glow_gradient.setColorAt(0.6, QColor(80, 150, 255, glow_alpha // 2))
-            glow_gradient.setColorAt(1, QColor(60, 120, 255, 0))
+            glow_gradient.setColorAt(0.5, QColor(100, 170, 255, glow_alpha // 2))
+            glow_gradient.setColorAt(1, QColor(80, 140, 255, 0))
+            
             painter.setBrush(glow_gradient)
             painter.setPen(Qt.PenStyle.NoPen)
             painter.drawEllipse(QPointF(center_x, center_y), glow_radius, glow_radius)
         
-        # Middle ring (subtle)
-        ring_radius = 5 + pulse3 * 1.5
-        ring_color = QColor(120, 200, 255, int(60 + 40 * pulse1))
-        painter.setPen(QPen(ring_color, 1.0 + pulse2 * 0.5))
+        # Middle accent ring (subtle, animated width)
+        ring_radius = 5.5 + pulse3 * 1.2
+        ring_width = 1.0 + pulse2 * 0.6
+        ring_color = QColor(140, 210, 255, int(80 + 40 * pulse1))
+        
+        painter.setPen(QPen(ring_color, ring_width))
         painter.setBrush(Qt.BrushStyle.NoBrush)
         painter.drawEllipse(QPointF(center_x, center_y), ring_radius, ring_radius)
         
-        # Inner bright dot
-        dot_radius = 3.5 + pulse1 * 0.8
+        # Inner bright core with subtle gradient
+        dot_radius = 3.2 + pulse1 * 0.6
         dot_gradient = QRadialGradient(center_x - 0.5, center_y - 0.5, dot_radius)
-        dot_gradient.setColorAt(0, QColor(255, 255, 255, int(250 + 5 * pulse2)))
-        dot_gradient.setColorAt(0.3, QColor(180, 230, 255, int(220 + 35 * pulse1)))
-        dot_gradient.setColorAt(0.7, QColor(120, 200, 255, int(180 + 50 * pulse3)))
-        dot_gradient.setColorAt(1, QColor(80, 160, 255, int(100 + 50 * pulse1)))
+        
+        # Gradient for glassmorphic effect
+        dot_gradient.setColorAt(0, QColor(255, 255, 255, int(245 + 10 * pulse2)))
+        dot_gradient.setColorAt(0.3, QColor(200, 240, 255, int(220 + 30 * pulse1)))
+        dot_gradient.setColorAt(0.7, QColor(140, 210, 255, int(190 + 40 * pulse3)))
+        dot_gradient.setColorAt(1, QColor(100, 180, 255, int(120 + 40 * pulse1)))
+        
         painter.setBrush(dot_gradient)
         painter.setPen(Qt.PenStyle.NoPen)
         painter.drawEllipse(QPointF(center_x, center_y), dot_radius, dot_radius)
         
-        # Tiny white highlight (top-left of dot)
-        highlight_offset = dot_radius * 0.3
-        painter.setBrush(QColor(255, 255, 255, int(180 + 75 * pulse2)))
+        # Tiny bright highlight (simulates light reflection on glass)
+        highlight_offset = dot_radius * 0.35
+        highlight_radius = 1.0 + pulse1 * 0.25
+        painter.setBrush(QColor(255, 255, 255, int(200 + 55 * pulse2)))
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.drawEllipse(
             QPointF(center_x - highlight_offset, center_y - highlight_offset), 
-            1.2 + pulse1 * 0.3, 
-            1.2 + pulse1 * 0.3
+            highlight_radius, 
+            highlight_radius
         )
 
     # ─── Music Player ─────────────────────────────────────────────────────────
@@ -1817,6 +1938,48 @@ class DynamicIslandWindow(QWidget):
             user32.keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0)
         except Exception as exc:
             self._show_error(f"Erro ao avançar faixa: {exc}")
+    
+    def _check_music_playing(self) -> None:
+        """Check if music is currently playing and auto-show controls."""
+        try:
+            import ctypes
+            
+            # Get active window title to detect music apps
+            user32 = ctypes.windll.user32
+            kernel32 = ctypes.windll.kernel32
+            
+            # Get foreground window
+            hwnd = user32.GetForegroundWindow()
+            if not hwnd:
+                return
+            
+            # Get window title
+            length = user32.GetWindowTextLength(hwnd)
+            buf = ctypes.create_unicode_buffer(length + 1)
+            user32.GetWindowTextW(hwnd, buf, length + 1)
+            window_title = buf.value.lower()
+            
+            # Music apps keywords
+            music_apps = ['spotify', 'music', 'youtube', 'vlc', 'winamp', 'itunes', 'foobar', 'groove', 'bandcamp', 'tidal']
+            is_music_playing = any(app in window_title for app in music_apps)
+            
+            # Also check if any media controls are available (indicates music is playing)
+            # If expanded and music enabled, keep showing controls
+            music_enabled = self.config.get("music_controls_enabled", True)
+            
+            if music_enabled and self.expanded and not self._music_player_visible:
+                # Auto-show music controls when expanded
+                if hasattr(self, '_music_controls'):
+                    self._music_player_visible = True
+                    self._music_controls.setVisible(True)
+                    # Expand width to accommodate music controls
+                    music_extra = 150
+                    current_geo = self.geometry()
+                    new_width = max(current_geo.width(), self.EXPANDED_WIDTH + music_extra)
+                    self._animate_geometry(new_width, self.EXPANDED_HEIGHT)
+                    
+        except Exception:
+            pass  # Silently fail - this is monitoring only
     
     def _toggle_visibility(self) -> None:
         """Toggle window visibility - minimize to tray or restore."""
@@ -2047,6 +2210,7 @@ class DynamicIslandWindow(QWidget):
             daemon=True
         )
         self._notification_thread.start()
+        print("[INFO] Notification listener thread iniciado")
     
     def _notification_listener_thread(self) -> None:
         """Background thread that monitors Windows notifications."""
@@ -2058,7 +2222,9 @@ class DynamicIslandWindow(QWidget):
         seen_notifications = set()
         
         # Wait for UI to initialize
-        time.sleep(3)
+        time.sleep(2)
+        
+        print("[INFO] Listener thread aguardando notificações...")
         
         # Path to Windows Notification database
         notification_db = os.path.join(
@@ -2066,8 +2232,9 @@ class DynamicIslandWindow(QWidget):
             "Microsoft", "Windows", "Notifications", "wpndatabase.db"
         )
         
-        print(f"[INFO] Monitorando notificações do Windows...")
-        print(f"[INFO] Banco: {notification_db}")
+        print(f"[INFO] Monitorando notificações do Windows")
+        print(f"[INFO] Banco de dados: {notification_db}")
+        print(f"[INFO] Banco existe: {os.path.exists(notification_db)}")
         
         while self._notification_running:
             try:
@@ -2078,12 +2245,17 @@ class DynamicIslandWindow(QWidget):
                         import shutil
                         import tempfile
                         temp_db = os.path.join(tempfile.gettempdir(), "wpndatabase_copy.db")
-                        shutil.copy2(notification_db, temp_db)
+                        
+                        try:
+                            shutil.copy2(notification_db, temp_db)
+                        except PermissionError:
+                            # DB is locked, try to read directly
+                            temp_db = notification_db
                         
                         conn = sqlite3.connect(temp_db)
                         cursor = conn.cursor()
                         
-                        # Query only very recent notifications (last 60 seconds)
+                        # Query only very recent notifications (last 120 seconds)
                         import time as time_module
                         current_time = int(time_module.time())
                         
@@ -2092,10 +2264,14 @@ class DynamicIslandWindow(QWidget):
                             FROM Notification 
                             WHERE ArrivalTime > ?
                             ORDER BY ArrivalTime DESC 
-                            LIMIT 5
-                        """, (current_time - 60,))
+                            LIMIT 10
+                        """, (current_time - 120,))
                         
-                        for row in cursor.fetchall():
+                        rows = cursor.fetchall()
+                        if rows:
+                            print(f"[DEBUG] Encontradas {len(rows)} notificações recentes")
+                        
+                        for row in rows:
                             notif_id, notif_type, payload, arrival_time = row
                             
                             if notif_id not in seen_notifications:
@@ -2130,24 +2306,29 @@ class DynamicIslandWindow(QWidget):
                                             if msg:
                                                 notification_text += f": {msg[:30]}"
                                             
+                                            print(f"[INFO] Notificação detectada: {app_name} - {notification_text}")
                                             self._queue_notification(notification_text, app_name)
-                                except Exception:
-                                    pass
+                                except Exception as e:
+                                    print(f"[WARN] Erro ao processar notificação: {e}")
                         
                         conn.close()
-                        os.remove(temp_db)
+                        if temp_db != notification_db:
+                            try:
+                                os.remove(temp_db)
+                            except:
+                                pass
                         
-                    except Exception:
-                        pass
+                    except Exception as e:
+                        print(f"[WARN] Erro ao ler banco de notificações: {e}")
                 
                 # Also check window titles as fallback
                 self._check_window_titles(seen_notifications)
                 
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"[ERROR] Erro no listener: {e}")
             
-            # Check every 5 seconds
-            time.sleep(5)
+            # Check every 3 seconds
+            time.sleep(3)
     
     def _check_window_titles(self, seen_notifications: set) -> None:
         """Check window titles for notification indicators."""
@@ -2206,10 +2387,14 @@ class DynamicIslandWindow(QWidget):
         
         # Check Do Not Disturb mode - skip notification if active
         if self._is_dnd:
+            print("[INFO] DND ativo, notificação suprimida")
             return
         
         if not hasattr(self, '_notification_label') or self._notification_label is None:
+            print("[ERROR] Label de notificação não foi criada")
             return
+        
+        print(f"[INFO] Mostrando notificação: {app_name} - {text}")
         
         # Stop collapse timer while showing notification
         if self._collapse_timer.isActive():
@@ -2265,8 +2450,11 @@ class DynamicIslandWindow(QWidget):
                 icon = emoji
                 break
         
-        # Format notification text with icon
-        display_text = f"{icon} {text[:60]}"
+        # Format notification text with icon and app name
+        if app_name:
+            display_text = f"{icon} {app_name}: {text[:45]}"
+        else:
+            display_text = f"{icon} {text[:50]}"
         
         # Add to history
         from datetime import datetime
@@ -2290,8 +2478,13 @@ class DynamicIslandWindow(QWidget):
         self._notification_label.setVisible(True)
         self._notification_label.raise_()  # Bring to front
         
+        # Ensure button container is also visible
+        if hasattr(self, '_button_container'):
+            self._button_container.setVisible(True)
+        
         # Force expand island
         if not self.expanded:
+            print("[INFO] Expandindo island para notificação")
             self.expand()
         
         # Play notification sound
@@ -2306,6 +2499,7 @@ class DynamicIslandWindow(QWidget):
             if self._notification_timer.isActive():
                 self._notification_timer.stop()
             self._notification_timer.start(4000)
+            print(f"[INFO] Timer de notificação iniciado (4 segundos)")
     
     def _show_notification_history(self) -> None:
         """Show notification history dialog."""
@@ -2428,7 +2622,8 @@ class DynamicIslandWindow(QWidget):
         ]
         app = random.choice(test_apps)
         msg = random.choice(test_messages)
-        self._show_notification(f"{app}: {msg}", app)
+        print(f"[DEBUG] Teste de notificação: {app} - {msg}")
+        self._show_notification(f"{msg}", app)
 
     def _show_error(self, msg: str) -> None:
         """Show error message dialog."""
